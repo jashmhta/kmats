@@ -1,1208 +1,1697 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KMATS — AI & Technology Solutions</title>
-  <meta name="description" content="KMATS delivers cutting-edge AI solutions in machine learning, automation, and digital transformation. Building tomorrow's intelligence, today.">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>KMATS — Solo-Built. Family-Backed. World-Ready.</title>
+  <meta name="description" content="KMATS AI & Tech Consultancy LLP — building purpose-driven AI, education, and software products for a global audience. Founded by Krishank Shah." />
+  <meta name="theme-color" content="#0b0b0c" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kmats.in/">
-  <meta property="og:title" content="KMATS — AI & Technology Solutions">
-  <meta property="og:description" content="Cutting-edge AI solutions in machine learning, automation, and digital transformation.">
-  <meta property="og:image" content="https://kmats.in/og-image.png">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kmats.in/" />
+  <meta property="og:title" content="KMATS — Solo-Built. Family-Backed. World-Ready." />
+  <meta property="og:description" content="AI, education, and software products for a global audience. Founded by Krishank Shah." />
+  <meta property="og:image" content="https://kmats.in/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
-
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/SplitText.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
 
   <style>
+    /* ============================================================
+       KMATS — Awwwards-grade redesign
+       Dark cinematic editorial · Brand teal · Family-name story
+       ============================================================ */
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    :root {
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --bgCard: #161616;
-      --text: #f0ede5;
-      --tdim: rgba(240,237,229,0.45);
-      --accent: #00d4aa;
-      --accent2: #00b896;
-      --aGlow: rgba(0,212,170,0.12);
-      --border: rgba(255,255,255,0.07);
-      --borderS: rgba(255,255,255,0.12);
-      --glass: rgba(10,10,10,0.72);
-      --glassS: rgba(10,10,10,0.92);
-      --shadow: 0 8px 32px rgba(0,0,0,0.4);
-      --shadowLg: 0 24px 64px rgba(0,0,0,0.5);
-      --grain: 0.04;
-      --ez: cubic-bezier(0.32,0.72,0,1);
-      --ez2: cubic-bezier(0.16,1,0.3,1);
+    :root{
+      /* canvas */
+      --bg:        #0b0b0c;
+      --bg-2:      #111114;
+      --bg-3:      #17171b;
+      --paper:     #f1ece1;     /* warm cream */
+      --paper-2:   #e7e1d3;
+      --ink:       #f4f1ea;
+      --ink-dim:   rgba(244,241,234,.62);
+      --ink-soft:  rgba(244,241,234,.42);
+      --ink-faint: rgba(244,241,234,.16);
+      --line:      rgba(244,241,234,.10);
+      --line-2:    rgba(244,241,234,.18);
+
+      /* brand */
+      --teal:      #2cd8c4;       /* KMATS brand teal */
+      --teal-2:    #14a08e;
+      --teal-glow: rgba(44,216,196,.18);
+      --amber:     #f0a93b;       /* warm secondary */
+      --plum:      #4f3ad6;       /* tertiary deep */
+
+      /* type */
+      --font-display: 'Cabinet Grotesk','Inter',system-ui,sans-serif;
+      --font-body:    'Satoshi','Inter',system-ui,sans-serif;
+      --font-serif:   'Instrument Serif', ui-serif, Georgia, serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+      /* motion */
+      --e1: cubic-bezier(.32,.72,0,1);
+      --e2: cubic-bezier(.16,1,.3,1);
+      --e3: cubic-bezier(.7,0,.3,1);
+
+      --maxw: 1480px;
+      --pad:  clamp(20px, 4vw, 56px);
+
+      --grain: .055;
     }
 
-    html { scroll-behavior: auto; }
-    html.lenis, html.lenis body { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto !important; }
-    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    html{scroll-behavior:auto}
+    html.lenis,html.lenis body{height:auto}
+    .lenis.lenis-smooth{scroll-behavior:auto !important}
+    .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 
-    body {
-      font-family: 'Satoshi', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+    body{
+      font-family:var(--font-body);
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      font-feature-settings:"ss01","ss02","cv11";
+      letter-spacing:-0.005em;
+    }
+    body.is-locked{overflow:hidden}
+
+    img,svg,video{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+    ::selection{background:var(--teal);color:#0a0a0a}
+
+    /* ---------- ambient layers ---------- */
+    .grain{
+      position:fixed;inset:-1px;pointer-events:none;z-index:90;
+      opacity:var(--grain);mix-blend-mode:overlay;
+    }
+    .grain::after{
+      content:"";position:absolute;inset:0;
+      background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/></svg>");
+      background-size:200px 200px;
+      animation:grain 1.2s steps(4) infinite;
+    }
+    @keyframes grain{
+      0%{transform:translate(0,0)} 25%{transform:translate(-2%,1%)}
+      50%{transform:translate(1%,-2%)} 75%{transform:translate(-1%,1%)}
     }
 
-    ::selection { background: var(--accent); color: var(--bg); }
-
-    /* ===== GRAIN ===== */
-    #grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 100;
-      opacity: var(--grain); mix-blend-mode: overlay;
-    }
-    #grain::after {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
+    .vignette{
+      position:fixed;inset:0;pointer-events:none;z-index:89;
+      background:radial-gradient(120% 80% at 50% 0%, transparent 55%, rgba(0,0,0,.55) 100%),
+                 radial-gradient(80% 60% at 50% 100%, transparent 60%, rgba(0,0,0,.45) 100%);
     }
 
-    /* ===== CUSTOM CURSOR ===== */
-    #cursor {
-      position: fixed; top: 0; left: 0; width: 18px; height: 18px;
-      border-radius: 50%; background: var(--accent); pointer-events: none;
-      z-index: 9999; mix-blend-mode: difference;
-      transform: translate(-50%, -50%);
-      transition: width 0.25s var(--ez), height 0.25s var(--ez), background 0.25s, opacity 0.25s;
+    .progress{
+      position:fixed;top:0;left:0;height:1.5px;width:0;z-index:1000;
+      background:linear-gradient(90deg, var(--teal), var(--amber));
+      box-shadow:0 0 12px var(--teal-glow);
     }
-    #cursor.h-link { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); mix-blend-mode: normal; }
-    #cursor.h-btn { width: 64px; height: 64px; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); mix-blend-mode: normal; }
 
-    /* ===== SCROLL PROGRESS ===== */
-    #pbar { position: fixed; top: 0; left: 0; height: 2px; z-index: 9998; background: var(--accent); width: 0; }
+    /* ---------- custom cursor ---------- */
+    .cursor{
+      position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;
+      background:var(--teal);pointer-events:none;z-index:9999;
+      transform:translate(-50%,-50%);
+      mix-blend-mode:difference;
+      transition:width .35s var(--e2), height .35s var(--e2),
+                 background .25s, opacity .25s;
+    }
+    .cursor.is-link{width:54px;height:54px;background:transparent;
+      border:1.5px solid var(--teal);mix-blend-mode:normal}
+    .cursor.is-text{width:2px;height:24px;border-radius:1px;
+      background:var(--teal);mix-blend-mode:normal}
+    @media (hover:none){ .cursor{display:none} }
 
-    /* ===== LOADER ===== */
-    #loader {
-      position: fixed; inset: 0; z-index: 10000; background: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 2rem;
+    /* ---------- loader ---------- */
+    .loader{
+      position:fixed;inset:0;z-index:1100;background:var(--bg);
+      display:flex;align-items:center;justify-content:center;flex-direction:column;
+      gap:34px;
     }
-    #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.8s var(--ez2), visibility 0.8s; }
-    .loader-text {
-      font-family: 'Cabinet Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 900; letter-spacing: -0.04em; color: var(--text);
-      overflow: hidden;
+    .loader.hidden{opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .9s var(--e2), visibility .9s}
+    .loader-letters{
+      display:flex;gap:clamp(6px,1.4vw,18px);
+      font-family:var(--font-display);font-weight:900;
+      font-size:clamp(48px,9vw,120px);letter-spacing:-.05em;color:var(--ink);
     }
-    .loader-text span { display: block; transform: translateY(110%); }
-    .loader-bar { width: 200px; height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-    .loader-bar-fill { width: 0; height: 100%; background: var(--accent); border-radius: 1px; transition: width 0.3s var(--ez); }
+    .loader-letters span{display:inline-block;transform:translateY(110%);opacity:0}
+    .loader-bar{
+      width:240px;height:1.5px;background:var(--line);overflow:hidden;
+    }
+    .loader-bar-fill{height:100%;width:0;background:var(--teal)}
+    .loader-meta{
+      display:flex;justify-content:space-between;width:240px;
+      font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);
+      letter-spacing:.08em;text-transform:uppercase;
+    }
 
-    /* ===== NAV ===== */
-    #navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.5rem 2.5rem; transition: all 0.6s var(--ez);
+    /* ---------- nav ---------- */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding: 22px var(--pad);
+      display:flex;align-items:center;justify-content:space-between;
+      transition:transform .45s var(--e2), background .35s, border-color .35s, backdrop-filter .35s;
+      border-bottom:1px solid transparent;
     }
-    #navbar.scrolled {
-      background: var(--glassS); backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);
-      padding: 1rem 2.5rem;
+    .nav.is-scrolled{
+      background:rgba(11,11,12,.62);
+      backdrop-filter:blur(18px) saturate(160%);
+      -webkit-backdrop-filter:blur(18px) saturate(160%);
+      border-color:var(--line);
+      padding-top:14px;padding-bottom:14px;
     }
-    #navbar.hide { transform: translateY(-100%); }
-    .nav-logo {
-      font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900;
-      font-size: 1.25rem; letter-spacing: -0.03em; color: var(--text);
-      text-decoration: none; position: relative;
+    .nav.is-hidden{transform:translateY(-110%)}
+    .nav-logo{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:var(--font-display);font-weight:800;letter-spacing:-.04em;
+      font-size:18px;color:var(--ink);
     }
-    .nav-logo::after {
-      content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 100%; height: 2px; background: var(--accent);
-      transform: scaleX(0); transform-origin: right; transition: transform 0.4s var(--ez);
+    .nav-logo-mark{
+      width:28px;height:28px;border-radius:7px;
+      background:linear-gradient(135deg, var(--teal), var(--teal-2));
+      display:grid;place-items:center;color:#072925;
+      font-family:var(--font-display);font-size:14px;font-weight:900;
+      box-shadow:0 0 0 1px rgba(255,255,255,.06), 0 8px 24px rgba(44,216,196,.25);
     }
-    .nav-logo:hover::after { transform: scaleX(1); transform-origin: left; }
-    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-    .nav-link {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--tdim); text-decoration: none;
-      transition: color 0.3s; position: relative;
+    .nav-links{display:flex;gap:6px}
+    .nav-link{
+      position:relative;padding:10px 14px;font-size:13.5px;color:var(--ink-dim);
+      transition:color .25s;border-radius:99px;letter-spacing:.005em;
     }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 100%; height: 1px; background: var(--accent);
-      transform: scaleX(0); transition: transform 0.3s var(--ez);
+    .nav-link::after{
+      content:"";position:absolute;left:14px;right:14px;bottom:6px;height:1px;
+      background:var(--teal);transform:scaleX(0);transform-origin:left;
+      transition:transform .45s var(--e2);
     }
-    .nav-link:hover { color: var(--text); }
-    .nav-link:hover::after { transform: scaleX(1); }
-    .nav-cta {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--bg); background: var(--accent);
-      padding: 0.65rem 1.5rem; border-radius: 100px; text-decoration: none;
-      transition: all 0.3s var(--ez);
+    .nav-link:hover{color:var(--ink)}
+    .nav-link:hover::after{transform:scaleX(1)}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:11px 18px 11px 20px;border-radius:99px;
+      font-size:13.5px;font-weight:500;
+      background:var(--ink);color:#0a0a0a;
+      transition:transform .35s var(--e2), background .35s;
     }
-    .nav-cta:hover { background: var(--text); transform: scale(1.03); }
+    .nav-cta:hover{transform:translateY(-1px);background:var(--teal)}
+    .nav-cta-dot{
+      width:6px;height:6px;border-radius:50%;background:var(--teal);
+      box-shadow:0 0 0 4px rgba(44,216,196,.18);
+    }
+    .nav-cta:hover .nav-cta-dot{background:#0a0a0a;box-shadow:0 0 0 4px rgba(0,0,0,.15)}
+    .nav-burger{display:none;width:36px;height:36px;border-radius:99px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      align-items:center;justify-content:center;gap:3px;flex-direction:column}
+    .nav-burger span{width:14px;height:1.4px;background:var(--ink);transition:transform .35s var(--e2), opacity .25s}
+    .nav.is-menu .nav-burger span:nth-child(1){transform:translateY(2.5px) rotate(45deg)}
+    .nav.is-menu .nav-burger span:nth-child(2){opacity:0}
+    .nav.is-menu .nav-burger span:nth-child(3){transform:translateY(-2.5px) rotate(-45deg)}
 
-    /* Hamburger */
-    .ham { display: none; width: 24px; height: 18px; flex-direction: column; justify-content: space-between; cursor: none; background: none; border: none; }
-    .ham span { display: block; width: 100%; height: 1.5px; background: var(--text); transition: all 0.4s var(--ez); transform-origin: center; }
-    .ham span:nth-child(2) { width: 65%; margin-left: auto; }
-    .ham.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .ham.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
-    .ham.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    /* mobile menu */
+    .menu{
+      position:fixed;inset:0;z-index:998;background:var(--bg);
+      padding:120px var(--pad) 60px;display:flex;flex-direction:column;gap:22px;
+      transform:translateY(-100%);transition:transform .6s var(--e2);
+    }
+    .menu.is-open{transform:translateY(0)}
+    .menu a{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;
+      font-size:clamp(38px,9vw,72px);color:var(--ink);line-height:.95}
+    .menu a em{font-family:var(--font-serif);font-style:italic;color:var(--teal);font-weight:400}
+    .menu .menu-tail{margin-top:auto;display:flex;justify-content:space-between;
+      align-items:flex-end;color:var(--ink-soft);font-family:var(--font-mono);
+      font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 
-    /* Mobile Menu Overlay */
-    #menuOverlay {
-      position: fixed; inset: 0; z-index: 49; background: var(--glassS);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.5s var(--ez);
-    }
-    #menuOverlay.open { opacity: 1; pointer-events: auto; }
-    .mlink {
-      display: block; font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 900;
-      line-height: 1.1; color: var(--text); text-decoration: none;
-      opacity: 0; transform: translateY(2rem);
-      transition: all 0.7s var(--ez2);
-    }
-    #menuOverlay.open .mlink { opacity: 1; transform: translateY(0); }
-    .mlink:nth-child(1){transition-delay:0.06s}
-    .mlink:nth-child(2){transition-delay:0.12s}
-    .mlink:nth-child(3){transition-delay:0.18s}
-    .mlink:nth-child(4){transition-delay:0.24s}
-    .mlink:nth-child(5){transition-delay:0.30s}
-    .mlink:hover { color: var(--accent); }
+    /* ---------- container ---------- */
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 
-    /* ===== REVEAL ANIMATIONS ===== */
-    .rv { opacity: 0; transform: translateY(4rem); filter: blur(8px); }
-    .rv.vis { opacity: 1; transform: translateY(0); filter: blur(0); transition: opacity 1.2s var(--ez2), transform 1.2s var(--ez2), filter 1.2s var(--ez2); }
-    .trl { overflow: hidden; }
-    .trl span { display: block; transform: translateY(110%); }
-    .trl.vis span { transform: translateY(0); transition: transform 1s var(--ez2); }
-    .trl:nth-child(2) span { transition-delay: 0.1s; }
-    .trl:nth-child(3) span { transition-delay: 0.2s; }
-    .trl:nth-child(4) span { transition-delay: 0.3s; }
+    /* ---------- shared bits ---------- */
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:var(--font-mono);font-size:11px;text-transform:uppercase;
+      letter-spacing:.16em;color:var(--ink-soft);
+    }
+    .eyebrow::before{
+      content:"";width:24px;height:1px;background:var(--teal);
+      box-shadow:0 0 8px var(--teal-glow);
+    }
 
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      border-radius: 100px; padding: 1rem 2rem; font-size: 0.8rem;
-      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      transition: all 0.5s var(--ez); text-decoration: none; cursor: none;
+    .h-display{
+      font-family:var(--font-display);font-weight:800;
+      letter-spacing:-.045em;line-height:.92;
     }
-    .btn:active { transform: scale(0.97); }
-    .btn1 { background: var(--accent); color: var(--bg); }
-    .btn1:hover { background: var(--text); box-shadow: 0 0 40px rgba(0,212,170,0.2); }
-    .btn2 { background: transparent; box-shadow: inset 0 0 0 1px var(--borderS); color: var(--text); }
-    .btn2:hover { background: var(--bgCard); box-shadow: inset 0 0 0 1px var(--accent); }
-    .btn-aw {
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: rgba(255,255,255,0.1); display: flex;
-      align-items: center; justify-content: center;
-      transition: all 0.5s var(--ez);
+    .h-display em{
+      font-family:var(--font-serif);font-style:italic;
+      font-weight:400;letter-spacing:-.02em;color:var(--paper);
     }
-    .btn1 .btn-aw { background: rgba(0,0,0,0.15); }
-    .btn:hover .btn-aw { transform: translateX(3px) translateY(-1px); }
 
-    /* ===== SPOTLIGHT BORDER CARD ===== */
-    .scard {
-      position: relative; border-radius: 1.5rem; overflow: hidden;
-      background: var(--bgCard); border: 1px solid var(--border);
-      transition: border-color 0.4s;
+    .label-mono{
+      font-family:var(--font-mono);font-size:11px;
+      text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);
     }
-    .scard::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), var(--aGlow), transparent 50%);
-      opacity: 0; transition: opacity 0.4s; pointer-events: none; z-index: 2;
-    }
-    .scard:hover::before { opacity: 1; }
-    .scard:hover { border-color: rgba(0,212,170,0.2); }
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative; min-height: 100dvh; display: flex;
-      align-items: center; overflow: hidden;
+    /* reveal helpers */
+    .clip{overflow:hidden;display:inline-block}
+    .word, .line{display:inline-block;will-change:transform}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;min-height:100vh;min-height:100svh;
+      padding:140px var(--pad) 80px;
+      overflow:hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-canvas{position:absolute;inset:0;width:100%;height:100%;
+      filter:saturate(1.05)}
+    .hero-grid{
+      position:absolute;inset:0;pointer-events:none;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);
+      -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);
     }
-    .hero-gradient {
-      position: absolute; inset: 0;
+    .hero-fade{
+      position:absolute;left:0;right:0;bottom:-1px;height:30vh;pointer-events:none;
+      background:linear-gradient(to bottom, transparent, var(--bg) 85%);
+    }
+
+    .hero-inner{
+      position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;
+      display:grid;grid-template-columns:1fr;gap:42px;
+    }
+    .hero-meta{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+      color:var(--ink-soft);
+    }
+    .hero-meta .col{display:flex;flex-direction:column;gap:6px}
+    .hero-meta .col strong{font-family:var(--font-mono);font-size:12px;
+      color:var(--ink);letter-spacing:.02em;text-transform:none;font-weight:500}
+
+    .hero-title{
+      font-family:var(--font-display);font-weight:800;
+      font-size:clamp(54px, 11vw, 200px);
+      line-height:.86;letter-spacing:-.055em;
+    }
+    .hero-title .row{display:block;overflow:hidden}
+    .hero-title .row > span{display:inline-block;will-change:transform}
+    .hero-title em{
+      font-family:var(--font-serif);font-style:italic;font-weight:400;
+      color:var(--paper);letter-spacing:-.025em;
+      background:linear-gradient(180deg,var(--paper) 0%, var(--paper-2) 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-title .accent{
+      background:linear-gradient(110deg, var(--teal) 0%, #b9f0e6 50%, var(--teal) 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:shine 7s linear infinite;
+      font-style:italic;font-family:var(--font-serif);font-weight:400;letter-spacing:-.02em;
+    }
+    @keyframes shine{to{background-position:200% center}}
+
+    .hero-foot{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;
+      padding-top:18px;border-top:1px solid var(--line);
+    }
+    .hero-lead{
+      font-size:clamp(15px,1.15vw,18px);line-height:1.55;color:var(--ink-dim);
+      max-width:48ch;
+    }
+    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{
+      position:relative;display:inline-flex;align-items:center;gap:12px;
+      padding:18px 22px 18px 26px;border-radius:99px;font-size:14px;font-weight:500;
+      letter-spacing:.005em;transition:transform .45s var(--e2),
+        background .45s, color .45s, border-color .45s;
+      overflow:hidden;
+    }
+    .btn[data-magnet]{transform:translate3d(0,0,0)}
+    .btn-primary{background:var(--ink);color:#0a0a0a}
+    .btn-primary:hover{background:var(--teal)}
+    .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+    .btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--ink-dim)}
+    .btn-arrow{
+      width:34px;height:34px;border-radius:99px;background:rgba(0,0,0,.06);
+      display:grid;place-items:center;transition:transform .45s var(--e2);
+    }
+    .btn-primary .btn-arrow{background:rgba(0,0,0,.12)}
+    .btn:hover .btn-arrow{transform:translate(2px,-2px) rotate(-45deg)}
+    .btn .btn-arrow svg{width:14px;height:14px}
+
+    .scroll-cue{
+      position:absolute;left:var(--pad);bottom:34px;z-index:3;
+      display:flex;align-items:center;gap:14px;color:var(--ink-soft);
+      font-family:var(--font-mono);font-size:11px;text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+    .scroll-cue-line{width:1px;height:54px;background:var(--line-2);position:relative;overflow:hidden}
+    .scroll-cue-line::after{
+      content:"";position:absolute;left:0;top:-100%;width:100%;height:60%;
+      background:linear-gradient(to bottom, transparent, var(--teal));
+      animation:scrollCue 2.4s var(--e2) infinite;
+    }
+    @keyframes scrollCue{
+      0%{top:-60%}
+      100%{top:120%}
+    }
+
+    /* hero status pill — top right */
+    .hero-status{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 14px;border-radius:99px;border:1px solid var(--line-2);
+      font-size:12px;color:var(--ink-dim);background:rgba(255,255,255,.02);
+    }
+    .hero-status .dot{
+      width:7px;height:7px;border-radius:50%;background:var(--teal);
+      box-shadow:0 0 0 0 rgba(44,216,196,.5);
+      animation:pulse 1.8s var(--e2) infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(44,216,196,.5)}
+      70%{box-shadow:0 0 0 10px rgba(44,216,196,0)}
+      100%{box-shadow:0 0 0 0 rgba(44,216,196,0)}
+    }
+
+    /* ---------- ticker ---------- */
+    .ticker{
+      position:relative;padding:18px 0;border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.015);
+    }
+    .ticker-track{display:flex;gap:48px;white-space:nowrap;
+      animation:tk 38s linear infinite;will-change:transform}
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-item{
+      display:inline-flex;align-items:center;gap:24px;
+      font-family:var(--font-display);font-weight:600;font-size:clamp(20px,3vw,32px);
+      letter-spacing:-.02em;color:var(--ink);
+    }
+    .ticker-item em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--teal)}
+    .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--ink-faint)}
+    @keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ---------- section base ---------- */
+    section{position:relative}
+    .section{padding: clamp(80px,12vh,160px) 0}
+    .section-head{
+      display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:end;
+      margin-bottom:60px;
+    }
+    .section-head h2{
+      font-family:var(--font-display);font-weight:800;
+      font-size:clamp(40px,6.4vw,96px);letter-spacing:-.045em;line-height:.92;
+    }
+    .section-head h2 em{
+      font-family:var(--font-serif);font-style:italic;font-weight:400;
+      letter-spacing:-.02em;color:var(--paper);
+    }
+    .section-head p{color:var(--ink-dim);font-size:clamp(15px,1.05vw,17px);
+      line-height:1.55;max-width:46ch}
+    .section-num{
+      font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--ink-soft);display:flex;gap:14px;align-items:center;
+      margin-bottom:20px;
+    }
+    .section-num::before{content:"";width:24px;height:1px;background:var(--ink-soft)}
+
+    /* ---------- MANIFESTO ---------- */
+    .manifesto{padding:clamp(80px,14vh,180px) 0;border-bottom:1px solid var(--line)}
+    .manifesto-text{
+      font-family:var(--font-display);font-weight:600;
+      font-size:clamp(34px,5.2vw,84px);letter-spacing:-.04em;line-height:1.04;
+      max-width:22ch;
+    }
+    .manifesto-text em{
+      font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--teal);
+      letter-spacing:-.02em;
+    }
+    .manifesto-text .muted{color:var(--ink-soft)}
+    .manifesto-foot{
+      margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+      padding-top:28px;border-top:1px solid var(--line);
+    }
+    .manifesto-stat{display:flex;flex-direction:column;gap:6px}
+    .manifesto-stat-num{
+      font-family:var(--font-display);font-size:clamp(32px,4.5vw,56px);
+      font-weight:800;letter-spacing:-.04em;
+      background:linear-gradient(180deg,var(--ink),var(--ink-dim));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .manifesto-stat-label{color:var(--ink-soft);font-size:13px;line-height:1.4}
+
+    /* ---------- KMATS ORIGIN ---------- */
+    .origin{padding:clamp(80px,14vh,160px) 0;background:
+      radial-gradient(80% 50% at 50% 0%, rgba(44,216,196,.06), transparent 70%);
+      border-bottom:1px solid var(--line);
+    }
+    .origin-grid{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:28px;
+    }
+    .origin-card{
+      position:relative;padding:30px 26px 28px;border:1px solid var(--line);
+      border-radius:18px;min-height:300px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0));
+      transition:transform .55s var(--e2), border-color .35s, background .35s;
+      cursor:pointer;
+    }
+    .origin-card::before{
+      content:"";position:absolute;inset:-1px;border-radius:18px;pointer-events:none;
+      background:linear-gradient(160deg, var(--teal-glow), transparent 50%);
+      opacity:0;transition:opacity .5s var(--e2);
+    }
+    .origin-card:hover{transform:translateY(-6px);border-color:var(--line-2);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01))}
+    .origin-card:hover::before{opacity:1}
+    .origin-letter{
+      font-family:var(--font-display);font-weight:900;
+      font-size:clamp(80px,9vw,140px);line-height:1;
+      letter-spacing:-.06em;color:var(--ink);
+      transition:color .35s, transform .55s var(--e2);
+    }
+    .origin-card:hover .origin-letter{color:var(--teal);transform:translateY(-4px)}
+    .origin-name{
+      margin-top:auto;font-family:var(--font-serif);font-style:italic;
+      font-size:24px;letter-spacing:-.01em;color:var(--paper);
+    }
+    .origin-role{
+      font-family:var(--font-mono);font-size:11px;text-transform:uppercase;
+      letter-spacing:.14em;color:var(--ink-soft);margin-top:6px;
+    }
+    .origin-bottom{
+      display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+      position:absolute;left:26px;right:26px;bottom:24px;
+    }
+    .origin-card .origin-letter{position:relative;z-index:1}
+
+    .origin-foot{
+      margin-top:40px;display:flex;justify-content:space-between;align-items:center;
+      padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);
+      font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+      gap:24px;flex-wrap:wrap;
+    }
+
+    /* ---------- SERVICES BENTO ---------- */
+    .services{padding:clamp(80px,12vh,160px) 0;border-bottom:1px solid var(--line)}
+    .bento{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      grid-auto-rows:minmax(180px, auto);
+      gap:14px;
+    }
+    .b-card{
+      position:relative;border:1px solid var(--line);border-radius:22px;
+      padding:28px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+      transition:transform .55s var(--e2), border-color .35s, background .35s;
+      display:flex;flex-direction:column;gap:14px;min-height:240px;
+    }
+    .b-card:hover{transform:translateY(-4px);border-color:var(--line-2)}
+    .b-card .b-eyebrow{display:flex;align-items:center;justify-content:space-between;
+      color:var(--ink-soft);font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase}
+    .b-card h3{
+      font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.4vw,32px);
+      letter-spacing:-.03em;line-height:1.05;
+    }
+    .b-card h3 em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--teal)}
+    .b-card p{color:var(--ink-dim);font-size:14.5px;line-height:1.55;max-width:42ch}
+    .b-card .b-arrow{
+      margin-top:auto;width:40px;height:40px;border-radius:99px;
+      border:1px solid var(--line-2);display:grid;place-items:center;
+      color:var(--ink);transition:background .35s, border-color .35s, transform .45s var(--e2);
+    }
+    .b-card:hover .b-arrow{background:var(--teal);color:#0a0a0a;border-color:var(--teal);transform:rotate(-45deg)}
+
+    /* spans */
+    .b-rpm{grid-column:span 4;grid-row:span 2;min-height:380px;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,212,170,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,100,80,0.06) 0%, transparent 50%),
-        linear-gradient(to bottom, transparent 60%, var(--bg));
+        radial-gradient(70% 90% at 100% 0%, rgba(44,216,196,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
     }
-    .hero-mesh {
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(circle at 25% 25%, rgba(0,212,170,0.03) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(0,180,150,0.03) 0%, transparent 50%);
+    .b-rpm .b-art{
+      position:absolute;inset:0;pointer-events:none;opacity:.85;
+      mask-image:linear-gradient(180deg, black 30%, transparent 90%);
+      -webkit-mask-image:linear-gradient(180deg, black 30%, transparent 90%);
     }
-    .hero-grid-lines {
-      position: absolute; inset: 0; opacity: 0.03;
-      background-image:
-        linear-gradient(var(--text) 1px, transparent 1px),
-        linear-gradient(90deg, var(--text) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-    .hero-content {
-      position: relative; z-index: 10; width: 100%;
-      max-width: 1440px; margin: 0 auto; padding: 8rem 2.5rem 4rem;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      border-radius: 100px; padding: 0.5rem 1rem;
-      background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.15);
-      margin-bottom: 2.5rem;
-    }
-    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
-    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero-eyebrow-text { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
-    .hero-title {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 8.5rem); font-weight: 900;
-      line-height: 0.92; letter-spacing: -0.04em; max-width: 900px;
-      margin-bottom: 2rem;
-    }
-    .hero-title .line { display: block; overflow: hidden; }
-    .hero-title .line span { display: block; transform: translateY(110%); }
-    .hero-title .accent-word { color: var(--accent); }
-    .hero-desc {
-      font-size: clamp(0.9rem, 1.2vw, 1.1rem); line-height: 1.7;
-      color: var(--tdim); max-width: 500px; margin-bottom: 2.5rem;
-      font-weight: 400;
-    }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-stats {
-      position: absolute; right: 2.5rem; bottom: 4rem;
-      display: flex; gap: 3rem; z-index: 10;
-    }
-    .hero-stat-num {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900;
-      color: var(--accent); letter-spacing: -0.03em;
-    }
-    .hero-stat-label {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--tdim); margin-top: 0.25rem;
-    }
-    .scroll-indicator {
-      position: absolute; bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%); display: flex;
-      flex-direction: column; align-items: center; gap: 0.5rem;
-      color: var(--tdim); z-index: 10;
-    }
-    .scroll-indicator span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
-    .scroll-line { width: 1px; height: 40px; background: var(--tdim); animation: scroll-pulse 2s ease-in-out infinite; }
-    @keyframes scroll-pulse { 0%,100% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.3; transform: scaleY(0.6); } }
+    .b-consult{grid-column:span 2;grid-row:span 2;min-height:380px}
+    .b-shopify{grid-column:span 3}
+    .b-software{grid-column:span 3}
+    .b-edu{grid-column:span 2}
+    .b-ai{grid-column:span 2}
+    .b-app{grid-column:span 2}
 
-    /* ===== MARQUEE ===== */
-    .marquee-section {
-      padding: 2rem 0; border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border); overflow: hidden;
-    }
-    .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .marquee-item {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 700;
-      letter-spacing: -0.02em; white-space: nowrap; padding: 0 2rem;
-      color: var(--tdim); transition: color 0.3s;
-    }
-    .marquee-item:hover { color: var(--accent); }
-    .marquee-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--accent); align-self: center; flex-shrink: 0;
-    }
+    .b-list{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+    .b-list li{list-style:none;font-size:13px;color:var(--ink-dim);
+      display:flex;gap:10px;align-items:center}
+    .b-list li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--teal)}
 
-    /* ===== ABOUT / PHILOSOPHY ===== */
-    .philosophy-section {
-      padding: 10rem 2.5rem; position: relative;
+    .b-icon{
+      width:42px;height:42px;border-radius:12px;border:1px solid var(--line-2);
+      display:grid;place-items:center;color:var(--teal);
+      background:rgba(44,216,196,.05);
     }
-    .philosophy-inner {
-      max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-    }
-    .philosophy-visual { position: relative; }
-    .philosophy-img {
-      width: 100%; aspect-ratio: 4/5; border-radius: 1.5rem;
-      overflow: hidden; position: relative;
-    }
-    .philosophy-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: contrast(1.05) brightness(0.9);
-      transition: transform 1.2s var(--ez);
-    }
-    .philosophy-img:hover img { transform: scale(1.05); }
-    .philosophy-img::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.4), transparent 50%);
-    }
-    .philosophy-float {
-      position: absolute; bottom: -2rem; right: -2rem;
-      background: var(--bgCard); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 1.5rem 2rem;
-      backdrop-filter: blur(12px); z-index: 2;
-    }
-    .philosophy-float-num {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 2.5rem; font-weight: 900; color: var(--accent);
-      letter-spacing: -0.03em;
-    }
-    .philosophy-float-label {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--tdim);
-    }
-    .philosophy-content h2 {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 900;
-      line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 2rem;
-    }
-    .philosophy-content p {
-      font-size: 1rem; line-height: 1.8; color: var(--tdim);
-      max-width: 480px; margin-bottom: 1.5rem; font-weight: 400;
-    }
-    .philosophy-content p:last-of-type { margin-bottom: 2.5rem; }
+    .b-icon svg{width:18px;height:18px}
 
-    /* ===== SERVICES BENTO ===== */
-    .services-section {
-      padding: 10rem 2.5rem; background: var(--bg2);
-      position: relative;
+    /* ---------- COMPANIES MARQUEE ---------- */
+    .companies{padding:clamp(80px,12vh,160px) 0;border-bottom:1px solid var(--line);overflow:hidden}
+    .marquee-row{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+      mask-image:linear-gradient(90deg, transparent, black 6%, black 94%, transparent);}
+    .marquee-track{display:flex;gap:14px;animation:slide 56s linear infinite;will-change:transform}
+    .marquee-row.reverse .marquee-track{animation-direction:reverse;animation-duration:64s}
+    @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .company-card{
+      flex:0 0 auto;width:clamp(280px,30vw,360px);
+      padding:26px 28px;border:1px solid var(--line);border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+      display:flex;flex-direction:column;gap:14px;min-height:200px;
+      transition:transform .45s var(--e2), border-color .35s;
     }
-    .services-header {
-      max-width: 1440px; margin: 0 auto 4rem;
+    .company-card:hover{transform:translateY(-4px);border-color:var(--line-2)}
+    .company-name{
+      font-family:var(--font-display);font-weight:700;font-size:26px;
+      letter-spacing:-.02em;color:var(--ink);
     }
-    .section-tag {
-      display: inline-block; border-radius: 100px;
-      padding: 0.4rem 1rem; font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); border: 1px solid rgba(0,212,170,0.2);
-      margin-bottom: 1.5rem;
-    }
-    .section-title {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900;
-      line-height: 0.95; letter-spacing: -0.03em; max-width: 700px;
-    }
-    .bento-grid {
-      max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto; gap: 1.25rem;
-    }
-    .bento-card {
-      border-radius: 1.5rem; padding: 2.5rem;
-      background: var(--bgCard); border: 1px solid var(--border);
-      position: relative; overflow: hidden;
-      transition: border-color 0.4s, transform 0.5s var(--ez);
-    }
-    .bento-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), var(--aGlow), transparent 50%);
-      opacity: 0; transition: opacity 0.4s; pointer-events: none;
-    }
-    .bento-card:hover::before { opacity: 1; }
-    .bento-card:hover { border-color: rgba(0,212,170,0.15); transform: translateY(-4px); }
-    .bento-lg { grid-column: span 2; grid-row: span 2; padding: 3rem; }
-    .bento-wide { grid-column: span 2; }
-    .bento-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.15);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.5rem; color: var(--accent);
-    }
-    .bento-card h3 {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-    .bento-lg h3 { font-size: 2rem; }
-    .bento-card p { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); }
-    .bento-lg p { font-size: 0.95rem; max-width: 400px; }
-    .bento-video {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0.15; transition: opacity 0.6s;
-    }
-    .bento-card:hover .bento-video { opacity: 0.25; }
-    .bento-stat-num {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(3rem, 5vw, 5rem); font-weight: 900;
-      color: var(--accent); letter-spacing: -0.04em; line-height: 1;
-    }
-    .bento-stat-label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--tdim); margin-top: 0.5rem;
-    }
+    .company-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--teal)}
+    .company-desc{color:var(--ink-dim);font-size:14px;line-height:1.5}
+    .company-foot{margin-top:auto;display:flex;justify-content:space-between;
+      color:var(--ink-soft);font-family:var(--font-mono);font-size:11px;
+      letter-spacing:.1em;text-transform:uppercase}
+    .marquee-spacer{flex:0 0 auto;width:14px}
 
-    /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
-    .showcase-section {
-      position: relative; overflow: hidden;
-      padding: 10rem 0 0;
-    }
-    .showcase-header {
-      max-width: 1440px; margin: 0 auto; padding: 0 2.5rem 4rem;
-    }
-    .showcase-wrap { overflow: hidden; }
-    .showcase-track { display: flex; will-change: transform; }
-    .showcase-card {
-      flex-shrink: 0; width: 500px; margin-right: 2rem;
-      border-radius: 1.5rem; overflow: hidden;
-      background: var(--bgCard); border: 1px solid var(--border);
-      transition: border-color 0.4s;
-    }
-    .showcase-card:hover { border-color: rgba(0,212,170,0.2); }
-    .showcase-card-img {
-      width: 100%; height: 300px; overflow: hidden;
-    }
-    .showcase-card-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: contrast(1.05) brightness(0.85);
-      transition: transform 0.8s var(--ez);
-    }
-    .showcase-card:hover .showcase-card-img img { transform: scale(1.06); }
-    .showcase-card-body { padding: 2rem; }
-    .showcase-card-tag {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-    }
-    .showcase-card-title {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-    .showcase-card-desc { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); }
+    .companies-foot{margin-top:48px;display:flex;justify-content:space-between;
+      align-items:center;flex-wrap:wrap;gap:18px;
+      padding-top:28px;border-top:1px solid var(--line);color:var(--ink-soft)}
 
-    /* ===== PROCESS ===== */
-    .process-section {
-      padding: 10rem 2.5rem; background: var(--bg2);
+    /* ---------- PROCESS / VALUES ---------- */
+    .values{padding:clamp(80px,12vh,160px) 0;border-bottom:1px solid var(--line)}
+    .values-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+      background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;
     }
-    .process-inner {
-      max-width: 1000px; margin: 0 auto;
+    .value{
+      background:var(--bg);padding:36px 28px;display:flex;flex-direction:column;gap:14px;
+      min-height:280px;transition:background .45s var(--e2);
+      position:relative;
     }
-    .process-header { text-align: center; margin-bottom: 5rem; }
-    .process-header .section-title { margin: 0 auto; }
-    .process-steps { position: relative; }
-    .process-line {
-      position: absolute; top: 0; left: 1.5rem;
-      width: 2px; height: 0; background: var(--accent);
-      border-radius: 1px; transform-origin: top;
+    .value:hover{background:var(--bg-2)}
+    .value-num{
+      font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--ink-soft);
     }
-    .process-step {
-      display: flex; gap: 2.5rem; align-items: flex-start;
-      padding: 2.5rem 0; position: relative;
+    .value h3{
+      margin-top:auto;font-family:var(--font-display);font-weight:700;
+      font-size:24px;letter-spacing:-.02em;
     }
-    .process-step-num {
-      flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%;
-      background: var(--accent); color: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1rem; font-weight: 900; z-index: 2;
-    }
-    .process-step h3 {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-    .process-step p { font-size: 0.9rem; line-height: 1.7; color: var(--tdim); max-width: 500px; }
+    .value h3 em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--teal)}
+    .value p{color:var(--ink-dim);font-size:14px;line-height:1.5}
 
-    /* ===== TESTIMONIALS ===== */
-    .testimonials-section { padding: 10rem 2.5rem; }
-    .testimonials-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-    .testimonials-inner .section-tag { margin-bottom: 2rem; }
-    .testimonial-quote {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700;
-      line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 2.5rem;
-      font-style: italic;
+    /* ---------- CTA ---------- */
+    .cta{padding:clamp(100px,16vh,200px) 0;position:relative;overflow:hidden}
+    .cta-bg{
+      position:absolute;inset:0;z-index:0;
+      background:
+        radial-gradient(40% 40% at 18% 20%, var(--teal-glow), transparent 60%),
+        radial-gradient(40% 40% at 80% 90%, rgba(240,169,59,.10), transparent 60%);
+      filter:blur(8px);
     }
-    .testimonial-author { display: flex; align-items: center; gap: 1rem; justify-content: center; }
-    .testimonial-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      overflow: hidden; border: 2px solid var(--accent);
+    .cta-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr 1fr;
+      gap:48px;align-items:center}
+    .cta-title{
+      font-family:var(--font-display);font-weight:800;
+      font-size:clamp(48px,7vw,120px);letter-spacing:-.05em;line-height:.92;
     }
-    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .testimonial-name { font-weight: 700; font-size: 0.9rem; }
-    .testimonial-role { font-size: 0.75rem; color: var(--tdim); }
-    .testimonial-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 2rem; }
-    .testimonial-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border); cursor: pointer;
-      transition: all 0.3s var(--ez);
+    .cta-title em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--paper)}
+    .cta-card{
+      padding:36px;border:1px solid var(--line-2);border-radius:24px;
+      background:rgba(255,255,255,.03);backdrop-filter:blur(20px);
+      display:flex;flex-direction:column;gap:18px;
     }
-    .testimonial-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+    .cta-card a{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:18px 4px;border-bottom:1px solid var(--line);
+      transition:padding .45s var(--e2), color .35s, border-color .35s;
+    }
+    .cta-card a:hover{padding-left:14px;padding-right:14px;color:var(--teal);border-color:var(--teal)}
+    .cta-card a span:first-child{font-family:var(--font-mono);font-size:11px;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+    .cta-card a span:last-child{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em}
 
-    /* ===== CTA SECTION ===== */
-    .cta-section {
-      padding: 10rem 2.5rem; background: var(--bg2);
-      position: relative; overflow: hidden;
+    /* ---------- FOOTER ---------- */
+    .footer{padding:80px 0 40px;background:var(--bg);position:relative}
+    .footer::before{content:"";position:absolute;left:var(--pad);right:var(--pad);top:0;height:1px;background:var(--line)}
+    .footer-mark{
+      font-family:var(--font-display);font-weight:900;letter-spacing:-.06em;
+      font-size:clamp(120px,22vw,360px);line-height:.85;
+      background:linear-gradient(180deg, var(--ink) 0%, rgba(244,241,234,.08) 90%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      margin:30px 0 50px;user-select:none;
     }
-    .cta-beam {
-      position: absolute; width: 600px; height: 600px;
-      border-radius: 50%; pointer-events: none;
-      filter: blur(150px); opacity: 0.08;
-      background: var(--accent);
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:48px}
+    .footer-grid h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+    .footer-grid li{list-style:none;margin-bottom:10px}
+    .footer-grid a{color:var(--ink-dim);font-size:14px;transition:color .25s}
+    .footer-grid a:hover{color:var(--ink)}
+    .footer-blurb{color:var(--ink-dim);font-size:14px;line-height:1.55;max-width:34ch}
+    .footer-bottom{
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;
+      padding-top:24px;border-top:1px solid var(--line);
+      color:var(--ink-soft);font-family:var(--font-mono);font-size:11px;
+      letter-spacing:.08em;text-transform:uppercase;
     }
-    .cta-inner {
-      max-width: 700px; margin: 0 auto; text-align: center;
-      position: relative; z-index: 2;
+    .footer-socials{display:flex;gap:8px}
+    .footer-socials a{
+      width:38px;height:38px;border-radius:99px;border:1px solid var(--line-2);
+      display:grid;place-items:center;color:var(--ink-dim);transition:background .35s, color .35s, border-color .35s;
     }
-    .cta-inner .section-title { margin: 0 auto 1.5rem; }
-    .cta-inner p { font-size: 1rem; line-height: 1.7; color: var(--tdim); margin-bottom: 2.5rem; }
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .footer-socials a:hover{background:var(--teal);color:#0a0a0a;border-color:var(--teal)}
+    .footer-socials svg{width:14px;height:14px}
 
-    /* ===== FOOTER ===== */
-    .footer {
-      padding: 5rem 2.5rem 2.5rem;
-      border-top: 1px solid var(--border);
+    /* ---------- responsive ---------- */
+    @media (max-width: 1100px){
+      .nav-links{display:none}
+      .nav-burger{display:inline-flex}
+      .hero-foot{grid-template-columns:1fr;gap:28px}
+      .hero-ctas{justify-content:flex-start}
+      .section-head{grid-template-columns:1fr}
+      .origin-grid{grid-template-columns:repeat(5, minmax(160px, 1fr));overflow-x:auto;
+        scroll-snap-type:x mandatory;padding-bottom:8px}
+      .origin-card{scroll-snap-align:start;min-width:180px}
+      .bento{grid-template-columns:repeat(2,1fr)}
+      .b-rpm,.b-consult,.b-shopify,.b-software,.b-edu,.b-ai,.b-app{grid-column:span 2;grid-row:auto}
+      .values-grid{grid-template-columns:repeat(2,1fr)}
+      .cta-inner{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:36px 24px}
+      .manifesto-foot{grid-template-columns:repeat(2,1fr)}
     }
-    .footer-inner {
-      max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+    @media (max-width: 640px){
+      :root{ --pad: 18px; }
+      .hero{padding-top:120px}
+      .hero-meta{flex-wrap:wrap}
+      .values-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .scroll-cue{display:none}
     }
-    .footer-brand-name {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-    }
-    .footer-brand p { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); max-width: 300px; }
-    .footer-col h4 {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--text); margin-bottom: 1.5rem;
-    }
-    .footer-col a {
-      display: block; font-size: 0.85rem; color: var(--tdim);
-      text-decoration: none; padding: 0.35rem 0;
-      transition: color 0.3s;
-    }
-    .footer-col a:hover { color: var(--accent); }
-    .footer-bottom {
-      max-width: 1440px; margin: 3rem auto 0;
-      padding-top: 2rem; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-bottom span { font-size: 0.75rem; color: var(--tdim); }
-    .footer-social { display: flex; gap: 1rem; }
-    .footer-social a {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid var(--border); display: flex;
-      align-items: center; justify-content: center;
-      color: var(--tdim); transition: all 0.3s;
-    }
-    .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .bento-grid { grid-template-columns: repeat(2, 1fr); }
-      .bento-lg { grid-column: span 2; grid-row: span 1; }
-      .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-stats { position: relative; right: auto; bottom: auto; margin-top: 3rem; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 767px) {
-      html { cursor: auto; }
-      #cursor, #pbar { display: none; }
-      .ham { display: flex; }
-      .nav-links, .nav-cta { display: none; }
-      #navbar { padding: 1rem 1.5rem; }
-      .hero-content { padding: 7rem 1.5rem 3rem; }
-      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
-      .hero-stats { flex-wrap: wrap; gap: 2rem; }
-      .bento-grid { grid-template-columns: 1fr; }
-      .bento-lg, .bento-wide { grid-column: span 1; }
-      .showcase-card { width: 85vw; }
-      .philosophy-section, .services-section, .process-section, .testimonials-section, .cta-section { padding: 6rem 1.5rem; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-      button, a, .btn { cursor: pointer; }
-      .process-step { flex-direction: column; gap: 1rem; }
-      .philosophy-float { position: relative; bottom: auto; right: auto; margin-top: 1rem; display: inline-block; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:.001s !important;transition-duration:.001s !important}
+      .ticker-track,.marquee-track{animation:none !important}
     }
   </style>
 </head>
 <body>
 
+<!-- Ambient layers -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
 <!-- Loader -->
-<div id="loader">
-  <div class="loader-text"><span>KMATS</span></div>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-meta"><span>KMATS™</span><span id="loaderPct">000</span></div>
+  <div class="loader-letters" id="loaderLetters">
+    <span>K</span><span>M</span><span>A</span><span>T</span><span>S</span>
+  </div>
   <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+  <div class="loader-meta"><span>EST. 2024</span><span>MUMBAI · GLOBAL</span></div>
 </div>
 
-<!-- Grain -->
-<div id="grain" aria-hidden="true"></div>
-
-<!-- Cursor -->
-<div id="cursor"></div>
-
-<!-- Progress Bar -->
-<div id="pbar"></div>
-
-<!-- Navigation -->
-<header id="navbar">
-  <a href="#" class="nav-logo">KMATS</a>
-  <div class="nav-links">
-    <a href="#services" class="nav-link">Services</a>
-    <a href="#solutions" class="nav-link">Solutions</a>
-    <a href="#process" class="nav-link">Process</a>
-    <a href="#about" class="nav-link">About</a>
-  </div>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
-  <button class="ham" id="ham" aria-label="Menu">
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo" data-cursor="link">
+    <span class="nav-logo-mark">K</span>
+    <span>KMATS</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#story" class="nav-link" data-cursor="link">Story</a>
+    <a href="#origin" class="nav-link" data-cursor="link">Origin</a>
+    <a href="#services" class="nav-link" data-cursor="link">Services</a>
+    <a href="#work" class="nav-link" data-cursor="link">Work</a>
+    <a href="#values" class="nav-link" data-cursor="link">Values</a>
+  </nav>
+  <a href="#contact" class="nav-cta" data-cursor="link" data-magnet>
+    <span class="nav-cta-dot"></span>
+    <span>Start a project</span>
+  </a>
+  <button class="nav-burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- Mobile Menu -->
-<div id="menuOverlay">
-  <nav style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-    <a href="#services" class="mlink" onclick="closeMenu()">Services</a>
-    <a href="#solutions" class="mlink" onclick="closeMenu()">Solutions</a>
-    <a href="#process" class="mlink" onclick="closeMenu()">Process</a>
-    <a href="#about" class="mlink" onclick="closeMenu()">About</a>
-    <a href="#contact" class="mlink" onclick="closeMenu()">Contact</a>
-  </nav>
+<!-- Mobile menu -->
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="#story" data-cursor="link">Our <em>Story</em></a>
+  <a href="#origin" data-cursor="link">The <em>Name</em></a>
+  <a href="#services" data-cursor="link">What We <em>Do</em></a>
+  <a href="#work" data-cursor="link">Selected <em>Work</em></a>
+  <a href="#values" data-cursor="link">How We <em>Work</em></a>
+  <a href="#contact" data-cursor="link">Get in <em>Touch</em></a>
+  <div class="menu-tail">
+    <span>krishankshah@kmats.in</span>
+    <span>+91 88506 22122</span>
+  </div>
 </div>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="hero-gradient"></div>
-    <div class="hero-mesh"></div>
-    <div class="hero-grid-lines"></div>
+<!-- ============================== -->
+<!-- HERO                           -->
+<!-- ============================== -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-grid"></div>
   </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrow">
-      <span class="hero-eyebrow-dot"></span>
-      <span class="hero-eyebrow-text">AI & Technology Solutions</span>
+
+  <div class="hero-inner">
+
+    <div class="hero-meta">
+      <div class="col">
+        <span class="label-mono">[ K · M · A · T · S ]</span>
+        <strong>AI &amp; Tech Consultancy LLP</strong>
+      </div>
+      <div class="col" style="text-align:right">
+        <span class="hero-status"><span class="dot"></span> Open for partnerships · 2026</span>
+      </div>
     </div>
+
     <h1 class="hero-title" id="heroTitle">
-      <span class="line"><span>Building</span></span>
-      <span class="line"><span>tomorrow's</span></span>
-      <span class="line"><span><em class="accent-word">intelligence</em></span></span>
+      <span class="row"><span>Solo&#8209;built.</span></span>
+      <span class="row"><span><em>Family&#8209;backed.</em></span></span>
+      <span class="row"><span class="accent">World&#8209;ready.</span></span>
     </h1>
-    <p class="hero-desc" id="heroDesc">
-      We partner with ambitious teams to design, build, and deploy AI systems that transform how businesses operate, decide, and grow.
-    </p>
-    <div class="hero-ctas" id="heroCtas">
-      <a href="#contact" class="btn btn1">Start a Project <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
-      <a href="#solutions" class="btn btn2">Explore Solutions</a>
-    </div>
-    <div class="hero-stats" id="heroStats">
-      <div>
-        <div class="hero-stat-num" data-count="150">0</div>
-        <div class="hero-stat-label">Projects Delivered</div>
-      </div>
-      <div>
-        <div class="hero-stat-num" data-count="40">0</div>
-        <div class="hero-stat-label">Enterprise Clients</div>
-      </div>
-      <div>
-        <div class="hero-stat-num" data-count="98">0</div>
-        <div class="hero-stat-label">Success Rate %</div>
+
+    <div class="hero-foot">
+      <p class="hero-lead">
+        KMATS is a purpose-driven studio building AI, education, and software
+        products for a global audience. Founded by <strong style="color:var(--ink)">Krishank&nbsp;Shah</strong> —
+        powered by family, sharpened by craft.
+      </p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn btn-ghost" data-cursor="link" data-magnet>
+          What we do
+        </a>
+        <a href="#contact" class="btn btn-primary" data-cursor="link" data-magnet>
+          Start a project
+          <span class="btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+        </a>
       </div>
     </div>
   </div>
-  <div class="scroll-indicator">
+
+  <div class="scroll-cue" aria-hidden="true">
     <span>Scroll</span>
-    <div class="scroll-line"></div>
+    <div class="scroll-cue-line"></div>
   </div>
+  <div class="hero-fade" aria-hidden="true"></div>
 </section>
 
-<!-- ===== MARQUEE ===== -->
-<section class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">Machine Learning</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Natural Language Processing</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Computer Vision</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Process Automation</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Predictive Analytics</span><span class="marquee-dot"></span>
-    <span class="marquee-item">MLOps & Deployment</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Data Engineering</span><span class="marquee-dot"></span>
-    <span class="marquee-item">AI Strategy</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Machine Learning</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Natural Language Processing</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Computer Vision</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Process Automation</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Predictive Analytics</span><span class="marquee-dot"></span>
-    <span class="marquee-item">MLOps & Deployment</span><span class="marquee-dot"></span>
-    <span class="marquee-item">Data Engineering</span><span class="marquee-dot"></span>
-    <span class="marquee-item">AI Strategy</span><span class="marquee-dot"></span>
+<!-- ============================== -->
+<!-- TICKER                         -->
+<!-- ============================== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">RPM AI Educator</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Tech Consultancy</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">Custom Software</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Shopify Themes</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">AI Integration</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Education Platforms</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">Mobile Apps</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>ERP Solutions</em></span><span class="ticker-dot"></span>
+    <!-- duplicate -->
+    <span class="ticker-item">RPM AI Educator</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Tech Consultancy</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">Custom Software</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Shopify Themes</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">AI Integration</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>Education Platforms</em></span><span class="ticker-dot"></span>
+    <span class="ticker-item">Mobile Apps</span><span class="ticker-dot"></span>
+    <span class="ticker-item"><em>ERP Solutions</em></span><span class="ticker-dot"></span>
   </div>
-</section>
+</div>
 
-<!-- ===== PHILOSOPHY / ABOUT ===== -->
-<section class="philosophy-section" id="about">
-  <div class="philosophy-inner">
-    <div class="philosophy-visual rv">
-      <div class="philosophy-img">
-        <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=900" alt="KMATS team collaborating on AI solutions" loading="lazy">
+<!-- ============================== -->
+<!-- MANIFESTO                      -->
+<!-- ============================== -->
+<section class="manifesto" id="story">
+  <div class="wrap">
+    <div class="section-num">[ 01 ] · Our Story</div>
+    <p class="manifesto-text">
+      <span class="muted">A growing SaaS company</span> dedicated to building
+      <em>innovative software</em> and education solutions for a global audience —
+      <span class="muted">rooted in family, values, and the belief that great
+      technology should be accessible to everyone.</span>
+    </p>
+
+    <div class="manifesto-foot">
+      <div class="manifesto-stat">
+        <div class="manifesto-stat-num">01</div>
+        <div class="manifesto-stat-label">Founder<br>Krishank Shah</div>
       </div>
-      <div class="philosophy-float">
-        <div class="philosophy-float-num" data-count="8">0</div>
-        <div class="philosophy-float-label">Years of Innovation</div>
+      <div class="manifesto-stat">
+        <div class="manifesto-stat-num">09+</div>
+        <div class="manifesto-stat-label">Companies served<br>across industries</div>
+      </div>
+      <div class="manifesto-stat">
+        <div class="manifesto-stat-num">∞</div>
+        <div class="manifesto-stat-label">Time zones covered<br>global remote</div>
+      </div>
+      <div class="manifesto-stat">
+        <div class="manifesto-stat-num">2026</div>
+        <div class="manifesto-stat-label">KMATS AI &amp;<br>Tech Consultancy LLP</div>
       </div>
     </div>
-    <div class="philosophy-content">
-      <span class="section-tag rv">Who We Are</span>
-      <h2 class="rv" style="transition-delay:0.1s">
-        <span class="trl"><span>We don't just build AI.</span></span>
-        <span class="trl"><span>We build the systems</span></span>
-        <span class="trl"><span>that <em style="color:var(--accent);font-style:normal;">think</em>.</span></span>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- ORIGIN — K·M·A·T·S             -->
+<!-- ============================== -->
+<section class="origin" id="origin">
+  <div class="wrap">
+    <div class="section-num">[ 02 ] · The Name</div>
+    <div class="section-head">
+      <h2>Five letters.<br><em>One family.</em></h2>
+      <p>
+        The name itself honors the people who shaped this journey. Hover to meet them —
+        a quiet tribute woven into every product we ship.
+      </p>
+    </div>
+
+    <div class="origin-grid">
+      <div class="origin-card" data-cursor="link">
+        <div class="origin-letter">K</div>
+        <div class="origin-bottom">
+          <div class="origin-name">Krishank</div>
+          <div class="origin-role">Founder · Builder</div>
+        </div>
+      </div>
+      <div class="origin-card" data-cursor="link">
+        <div class="origin-letter">M</div>
+        <div class="origin-bottom">
+          <div class="origin-name">Mitrank</div>
+          <div class="origin-role">Brother · Co-spark</div>
+        </div>
+      </div>
+      <div class="origin-card" data-cursor="link">
+        <div class="origin-letter">A</div>
+        <div class="origin-bottom">
+          <div class="origin-name">Archana</div>
+          <div class="origin-role">Mother · Anchor</div>
+        </div>
+      </div>
+      <div class="origin-card" data-cursor="link">
+        <div class="origin-letter">T</div>
+        <div class="origin-bottom">
+          <div class="origin-name">Tushar</div>
+          <div class="origin-role">Father · Compass</div>
+        </div>
+      </div>
+      <div class="origin-card" data-cursor="link">
+        <div class="origin-letter">S</div>
+        <div class="origin-bottom">
+          <div class="origin-name">Shah</div>
+          <div class="origin-role">Surname · Legacy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="origin-foot">
+      <span>One founder · one family · one global mission</span>
+      <span>Solo-built. Family-backed. World-ready.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- SERVICES BENTO                 -->
+<!-- ============================== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-num">[ 03 ] · What We Do</div>
+    <div class="section-head">
+      <h2>Capabilities that<br><em>compound</em>.</h2>
+      <p>
+        From flagship AI products to custom software and conversion-led commerce —
+        a tight, opinionated stack tuned for clarity, performance, and scale.
+      </p>
+    </div>
+
+    <div class="bento">
+      <!-- RPM (hero card) -->
+      <a href="#contact" class="b-card b-rpm" data-cursor="link">
+        <svg class="b-art" viewBox="0 0 600 400" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+          <defs>
+            <radialGradient id="rg1" cx="80%" cy="20%" r="60%">
+              <stop offset="0%" stop-color="#2cd8c4" stop-opacity="0.45"/>
+              <stop offset="60%" stop-color="#2cd8c4" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="lg1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#f4f1ea" stop-opacity="0.0"/>
+              <stop offset="100%" stop-color="#f4f1ea" stop-opacity="0.08"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="400" fill="url(#rg1)"/>
+          <g stroke="url(#lg1)" stroke-width="1" fill="none">
+            <path d="M0 320 Q150 200 300 280 T 600 240"/>
+            <path d="M0 280 Q150 160 300 240 T 600 200"/>
+            <path d="M0 240 Q150 120 300 200 T 600 160"/>
+            <path d="M0 200 Q150 80 300 160 T 600 120"/>
+          </g>
+          <g fill="#2cd8c4">
+            <circle cx="540" cy="60" r="2"/>
+            <circle cx="500" cy="120" r="1.5"/>
+            <circle cx="450" cy="80" r="1"/>
+            <circle cx="560" cy="160" r="1"/>
+          </g>
+        </svg>
+        <div class="b-eyebrow"><span>Flagship · RPM</span><span>01</span></div>
+        <h3>RPM — <em>AI Educator</em><br>for the next billion learners.</h3>
+        <p>
+          Personalized learning paths, intelligent tutoring, real-time progress —
+          built to empower students, educators, and institutions worldwide.
+        </p>
+        <ul class="b-list">
+          <li>Personalized paths</li>
+          <li>Intelligent tutoring</li>
+          <li>Multi-language</li>
+          <li>24/7 assistance</li>
+          <li>Progress tracking</li>
+          <li>Content generation</li>
+        </ul>
+        <div class="b-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+      </a>
+
+      <!-- Tech Consultancy -->
+      <a href="#contact" class="b-card b-consult" data-cursor="link">
+        <div class="b-eyebrow"><span>Consultancy</span><span>02</span></div>
+        <div class="b-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <h3>Tech <em>Consultancy</em></h3>
+        <p>
+          Strategy, architecture, and stack decisions for international students and
+          global market professionals.
+        </p>
+        <ul class="b-list" style="grid-template-columns:1fr">
+          <li>Career strategy</li>
+          <li>Skill development</li>
+          <li>Stack selection</li>
+          <li>Market entry</li>
+        </ul>
+        <div class="b-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+      </a>
+
+      <!-- Shopify -->
+      <a href="#contact" class="b-card b-shopify" data-cursor="link">
+        <div class="b-eyebrow"><span>Commerce</span><span>03</span></div>
+        <h3>Custom <em>Shopify</em> themes.</h3>
+        <p>Brand-first, conversion-optimized e-commerce experiences engineered for speed and AOV.</p>
+        <div class="b-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+      </a>
+
+      <!-- Custom software -->
+      <a href="#contact" class="b-card b-software" data-cursor="link">
+        <div class="b-eyebrow"><span>Engineering</span><span>04</span></div>
+        <h3>Custom <em>software</em>.</h3>
+        <p>From SaaS dashboards to multi-tenant platforms — typed, tested, observable, and shipped fast.</p>
+        <div class="b-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+      </a>
+
+      <!-- Education platforms -->
+      <a href="#contact" class="b-card b-edu" data-cursor="link">
+        <div class="b-eyebrow"><span>EdTech</span><span>05</span></div>
+        <h3><em>Education</em> platforms.</h3>
+        <p>LMS, study tools, and adaptive learning systems for institutions and learners.</p>
+        <div class="b-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+      </a>
+
+      <!-- AI integrations -->
+      <a href="#contact" class="b-card b-ai" data-cursor="link">
+        <div class="b-eyebrow"><span>AI</span><span>06</span></div>
+        <h3>AI <em>integrations</em>.</h3>
+        <p>Drop intelligence into existing workflows — RAG, agents, copilots, automations.</p>
+        <div class="b-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+      </a>
+
+      <!-- Apps -->
+      <a href="#contact" class="b-card b-app" data-cursor="link">
+        <div class="b-eyebrow"><span>Mobile</span><span>07</span></div>
+        <h3>Apps &amp; <em>web</em>.</h3>
+        <p>Responsive, accessible, beautifully animated — from idea to App Store / production.</p>
+        <div class="b-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- COMPANIES                      -->
+<!-- ============================== -->
+<section class="companies" id="work">
+  <div class="wrap">
+    <div class="section-num">[ 04 ] · Selected Work</div>
+    <div class="section-head">
+      <h2>Trusted by teams<br><em>building forward</em>.</h2>
+      <p>
+        Partnerships across EdTech, Media, Health, Commerce and more — delivering
+        innovative solutions and driving digital transformation.
+      </p>
+    </div>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="marquee-row" aria-label="Companies row">
+    <div class="marquee-track">
+      <!-- group 1 -->
+      <article class="company-card">
+        <span class="company-tag">EdTech</span>
+        <div class="company-name">Ekeeda</div>
+        <p class="company-desc">Accelerating careers through innovation.</p>
+        <div class="company-foot"><span>Engineering</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Education</span>
+        <div class="company-name">NIBODH</div>
+        <p class="company-desc">Educational excellence &amp; learning solutions.</p>
+        <div class="company-foot"><span>Platform</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Media</span>
+        <div class="company-name">Neela Film Productions</div>
+        <p class="company-desc">Creative media &amp; visual storytelling.</p>
+        <div class="company-foot"><span>Web · Brand</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Consulting</span>
+        <div class="company-name">SuiB</div>
+        <p class="company-desc">Professional services &amp; business solutions.</p>
+        <div class="company-foot"><span>Strategy</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Technology</span>
+        <div class="company-name">RAJ Computers</div>
+        <p class="company-desc">IT solutions &amp; technology services since 1996.</p>
+        <div class="company-foot"><span>Modernization</span><span>2025 →</span></div>
+      </article>
+      <!-- group 2 (duplicate) -->
+      <article class="company-card">
+        <span class="company-tag">EdTech</span>
+        <div class="company-name">Ekeeda</div>
+        <p class="company-desc">Accelerating careers through innovation.</p>
+        <div class="company-foot"><span>Engineering</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Education</span>
+        <div class="company-name">NIBODH</div>
+        <p class="company-desc">Educational excellence &amp; learning solutions.</p>
+        <div class="company-foot"><span>Platform</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Media</span>
+        <div class="company-name">Neela Film Productions</div>
+        <p class="company-desc">Creative media &amp; visual storytelling.</p>
+        <div class="company-foot"><span>Web · Brand</span><span>2024 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Consulting</span>
+        <div class="company-name">SuiB</div>
+        <p class="company-desc">Professional services &amp; business solutions.</p>
+        <div class="company-foot"><span>Strategy</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Technology</span>
+        <div class="company-name">RAJ Computers</div>
+        <p class="company-desc">IT solutions &amp; technology services since 1996.</p>
+        <div class="company-foot"><span>Modernization</span><span>2025 →</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div style="height:14px"></div>
+
+  <!-- Row 2 -->
+  <div class="marquee-row reverse">
+    <div class="marquee-track">
+      <article class="company-card">
+        <span class="company-tag">Business</span>
+        <div class="company-name">NAPTEX</div>
+        <p class="company-desc">Corporate excellence &amp; business innovation.</p>
+        <div class="company-foot"><span>Operations</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">HealthTech</span>
+        <div class="company-name">Dis-Infect</div>
+        <p class="company-desc">Health &amp; safety solutions for modern facilities.</p>
+        <div class="company-foot"><span>Web · App</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Design &amp; Digital</span>
+        <div class="company-name">POKI Studios</div>
+        <p class="company-desc">High-converting websites, brands, and digital experiences.</p>
+        <div class="company-foot"><span>Partnership</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Health &amp; Wellness</span>
+        <div class="company-name">RBRTH™</div>
+        <p class="company-desc">E-commerce health &amp; wellness brand experience.</p>
+        <div class="company-foot"><span>Shopify</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">EdTech</span>
+        <div class="company-name">RPM</div>
+        <p class="company-desc">Flagship AI educator — KMATS in-house product.</p>
+        <div class="company-foot"><span>Product</span><span>2024 →</span></div>
+      </article>
+      <!-- duplicate -->
+      <article class="company-card">
+        <span class="company-tag">Business</span>
+        <div class="company-name">NAPTEX</div>
+        <p class="company-desc">Corporate excellence &amp; business innovation.</p>
+        <div class="company-foot"><span>Operations</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">HealthTech</span>
+        <div class="company-name">Dis-Infect</div>
+        <p class="company-desc">Health &amp; safety solutions for modern facilities.</p>
+        <div class="company-foot"><span>Web · App</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Design &amp; Digital</span>
+        <div class="company-name">POKI Studios</div>
+        <p class="company-desc">High-converting websites, brands, and digital experiences.</p>
+        <div class="company-foot"><span>Partnership</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">Health &amp; Wellness</span>
+        <div class="company-name">RBRTH™</div>
+        <p class="company-desc">E-commerce health &amp; wellness brand experience.</p>
+        <div class="company-foot"><span>Shopify</span><span>2025 →</span></div>
+      </article>
+      <article class="company-card">
+        <span class="company-tag">EdTech</span>
+        <div class="company-name">RPM</div>
+        <p class="company-desc">Flagship AI educator — KMATS in-house product.</p>
+        <div class="company-foot"><span>Product</span><span>2024 →</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="companies-foot">
+      <span>09 partner brands · across 8 industries</span>
+      <a href="#contact" class="btn btn-ghost" data-cursor="link" data-magnet>
+        Become the next →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- VALUES                         -->
+<!-- ============================== -->
+<section class="values" id="values">
+  <div class="wrap">
+    <div class="section-num">[ 05 ] · How We Work</div>
+    <div class="section-head">
+      <h2>Built on<br><em>four principles</em>.</h2>
+      <p>
+        We're growing — and we're just getting started. Open to partnerships, collaborators,
+        and talent who believe in meaningful, scalable tech.
+      </p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value">
+        <div class="value-num">01 / Innovation</div>
+        <h3>Innovation with <em>purpose</em>.</h3>
+        <p>Building what matters, not just what trends. Every product earns its place by solving a real problem.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">02 / People</div>
+        <h3>Technology for <em>people</em>.</h3>
+        <p>User-first design and accessibility. Power should feel intuitive — never intimidating.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">03 / Legacy</div>
+        <h3><em>Legacy</em>-led.</h3>
+        <p>Inspired by the people who made this dream possible. We build tools we'd be proud to hand them.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">04 / Simplicity</div>
+        <h3>Simplicity at <em>scale</em>.</h3>
+        <p>Powerful tools, minimal friction. Complexity hidden, clarity foregrounded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- CTA                            -->
+<!-- ============================== -->
+<section class="cta" id="contact">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="wrap cta-inner">
+    <div>
+      <div class="section-num">[ 06 ] · Get in Touch</div>
+      <h2 class="cta-title">
+        Let's build<br>
+        <em>something</em><br>
+        that lasts.
       </h2>
-      <p class="rv" style="transition-delay:0.2s">KMATS was founded on a simple premise: artificial intelligence should amplify human capability, not replace it. We design systems that learn, adapt, and evolve alongside your business.</p>
-      <p class="rv" style="transition-delay:0.3s">From early-stage startups to Fortune 500 enterprises, we've helped teams across healthcare, finance, logistics, and retail harness the full potential of machine learning and automation.</p>
-      <a href="#services" class="btn btn2 rv" style="transition-delay:0.4s">Our Capabilities <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+    </div>
+    <div class="cta-card">
+      <a href="mailto:krishankshah@kmats.in" data-cursor="link">
+        <span>E-Mail</span><span>krishankshah@kmats.in</span>
+      </a>
+      <a href="tel:+918850622122" data-cursor="link">
+        <span>Phone</span><span>+91&nbsp;88506&nbsp;22122</span>
+      </a>
+      <a href="https://krishank.kmats.in/" target="_blank" rel="noopener" data-cursor="link">
+        <span>Portfolio</span><span>krishank.kmats.in</span>
+      </a>
+      <a href="#" data-cursor="link">
+        <span>Schedule</span><span>Book via Calendly</span>
+      </a>
+      <a href="#" data-cursor="link">
+        <span>Location</span><span>Mumbai · Global Remote</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES BENTO ===== -->
-<section class="services-section" id="services">
-  <div class="services-header">
-    <span class="section-tag rv">What We Do</span>
-    <h2 class="section-title rv" style="transition-delay:0.1s">Capabilities that drive real outcomes</h2>
-  </div>
-  <div class="bento-grid">
-    <div class="bento-card bento-lg rv scard">
-      <video class="bento-video" autoplay muted loop playsinline preload="none">
-        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
-      </video>
-      <div style="position:relative;z-index:3;">
-        <div class="bento-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h3>Machine Learning & Deep Learning</h3>
-        <p>Custom ML pipelines from data ingestion to production deployment. We build recommendation engines, fraud detection systems, demand forecasting models, and neural architectures tailored to your domain.</p>
-      </div>
-    </div>
-    <div class="bento-card rv scard" style="transition-delay:0.08s">
-      <div class="bento-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
-      <h3>Natural Language</h3>
-      <p>Conversational AI, document intelligence, and semantic search systems powered by large language models and fine-tuned transformers.</p>
-    </div>
-    <div class="bento-card rv scard" style="transition-delay:0.12s">
-      <div class="bento-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
-      </div>
-      <h3>Computer Vision</h3>
-      <p>Object detection, image classification, video analytics, and visual quality inspection systems that see what humans miss.</p>
-    </div>
-    <div class="bento-card bento-wide rv scard" style="transition-delay:0.16s">
-      <div class="bento-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <h3>Process Automation & RPA</h3>
-      <p>Intelligent automation that goes beyond rule-based tasks. We combine RPA with AI decision-making to automate complex workflows, reducing operational costs by up to 60% while maintaining accuracy and compliance.</p>
-    </div>
-    <div class="bento-card rv scard" style="transition-delay:0.20s">
-      <div class="bento-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-      </div>
-      <h3>Data Engineering</h3>
-      <p>Scalable data pipelines, lakehouse architectures, and real-time streaming infrastructure that fuel your AI initiatives.</p>
-    </div>
-    <div class="bento-card rv scard" style="transition-delay:0.24s">
-      <div class="bento-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-      </div>
-      <h3>AI Strategy</h3>
-      <p>Roadmap design, feasibility assessment, and organizational AI readiness audits that align technology investments with business outcomes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== HORIZONTAL SCROLL SHOWCASE ===== -->
-<section class="showcase-section" id="solutions">
-  <div class="showcase-header">
-    <span class="section-tag rv">Case Studies</span>
-    <h2 class="section-title rv" style="transition-delay:0.1s">Solutions in action</h2>
-  </div>
-  <div class="showcase-wrap" id="showcaseWrap">
-    <div class="showcase-track" id="showcaseTrack">
-      <div class="showcase-card">
-        <div class="showcase-card-img">
-          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Healthcare AI solution" loading="lazy">
-        </div>
-        <div class="showcase-card-body">
-          <div class="showcase-card-tag">Healthcare</div>
-          <h3 class="showcase-card-title">Predictive Patient Analytics</h3>
-          <p class="showcase-card-desc">Built an early warning system for ICU patient deterioration, reducing critical events by 34% across a network of 12 hospitals.</p>
-        </div>
-      </div>
-      <div class="showcase-card">
-        <div class="showcase-card-img">
-          <img src="https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Finance AI solution" loading="lazy">
-        </div>
-        <div class="showcase-card-body">
-          <div class="showcase-card-tag">Finance</div>
-          <h3 class="showcase-card-title">Real-Time Fraud Detection</h3>
-          <p class="showcase-card-desc">Deployed a graph neural network that processes 2M+ transactions daily, catching fraudulent patterns with 99.2% precision.</p>
-        </div>
-      </div>
-      <div class="showcase-card">
-        <div class="showcase-card-img">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Logistics AI solution" loading="lazy">
-        </div>
-        <div class="showcase-card-body">
-          <div class="showcase-card-tag">Logistics</div>
-          <h3 class="showcase-card-title">Autonomous Route Optimization</h3>
-          <p class="showcase-card-desc">Designed a reinforcement learning system that reduced delivery fleet fuel costs by 28% and improved on-time rates to 97%.</p>
-        </div>
-      </div>
-      <div class="showcase-card">
-        <div class="showcase-card-img">
-          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Retail AI solution" loading="lazy">
-        </div>
-        <div class="showcase-card-body">
-          <div class="showcase-card-tag">Retail</div>
-          <h3 class="showcase-card-title">Demand Forecasting Engine</h3>
-          <p class="showcase-card-desc">ML-powered inventory prediction that cut stockouts by 45% and reduced overstock waste by $12M annually for a major retailer.</p>
-        </div>
-      </div>
-      <div class="showcase-card">
-        <div class="showcase-card-img">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Manufacturing AI solution" loading="lazy">
-        </div>
-        <div class="showcase-card-body">
-          <div class="showcase-card-tag">Manufacturing</div>
-          <h3 class="showcase-card-title">Visual Quality Inspection</h3>
-          <p class="showcase-card-desc">Computer vision system inspecting 10,000+ parts per hour on automotive assembly lines, achieving 99.7% defect detection.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROCESS ===== -->
-<section class="process-section" id="process">
-  <div class="process-inner">
-    <div class="process-header">
-      <span class="section-tag rv">How We Work</span>
-      <h2 class="section-title rv" style="transition-delay:0.1s">From concept to production</h2>
-    </div>
-    <div class="process-steps" id="processSteps">
-      <div class="process-line" id="processLine"></div>
-      <div class="process-step rv">
-        <div class="process-step-num">01</div>
-        <div>
-          <h3>Discovery & Scoping</h3>
-          <p>We deep-dive into your business challenge, data landscape, and success metrics. No cookie-cutter solutions — every engagement starts with understanding your unique context.</p>
-        </div>
-      </div>
-      <div class="process-step rv" style="transition-delay:0.1s">
-        <div class="process-step-num">02</div>
-        <div>
-          <h3>Architecture & Prototyping</h3>
-          <p>Rapid prototyping to validate feasibility. We design the system architecture, select the right models, and build a proof-of-concept in weeks, not months.</p>
-        </div>
-      </div>
-      <div class="process-step rv" style="transition-delay:0.2s">
-        <div class="process-step-num">03</div>
-        <div>
-          <h3>Development & Training</h3>
-          <p>Iterative model development with continuous evaluation. We build robust pipelines, train on your data, and optimize for production-grade performance.</p>
-        </div>
-      </div>
-      <div class="process-step rv" style="transition-delay:0.3s">
-        <div class="process-step-num">04</div>
-        <div>
-          <h3>Deployment & Monitoring</h3>
-          <p>Production deployment with real-time monitoring, drift detection, and automated retraining. We don't hand off and disappear — we ensure long-term reliability.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section class="testimonials-section">
-  <div class="testimonials-inner">
-    <span class="section-tag rv">Client Voices</span>
-    <div class="rv" style="transition-delay:0.1s">
-      <blockquote class="testimonial-quote" id="testimonialQuote">
-        "KMATS didn't just deliver a model — they delivered a system that fundamentally changed how we make decisions. Their team understood our domain better than most internal hires."
-      </blockquote>
-      <div class="testimonial-author" id="testimonialAuthor">
-        <div class="testimonial-avatar">
-          <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200" alt="Sarah Chen" loading="lazy">
-        </div>
-        <div style="text-align:left;">
-          <div class="testimonial-name">Sarah Chen</div>
-          <div class="testimonial-role">CTO, MedTech Innovations</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-dots" id="testimonialDots">
-      <div class="testimonial-dot active" data-idx="0"></div>
-      <div class="testimonial-dot" data-idx="1"></div>
-      <div class="testimonial-dot" data-idx="2"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta-section" id="contact">
-  <div class="cta-beam"></div>
-  <div class="cta-inner">
-    <span class="section-tag rv">Let's Build</span>
-    <h2 class="section-title rv" style="transition-delay:0.1s">Ready to transform with AI?</h2>
-    <p class="rv" style="transition-delay:0.2s">Whether you're exploring your first ML use case or scaling an existing AI infrastructure, we'd love to hear what you're building.</p>
-    <div class="cta-buttons rv" style="transition-delay:0.3s">
-      <a href="mailto:hello@kmats.in" class="btn btn1">Start a Conversation <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
-      <a href="#" class="btn btn2">Schedule a Call</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
+<!-- ============================== -->
+<!-- FOOTER                         -->
+<!-- ============================== -->
 <footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-brand-name">KMATS</div>
-      <p>AI & technology solutions that transform how businesses operate, decide, and grow. Building tomorrow's intelligence, today.</p>
+  <div class="wrap">
+    <div class="footer-mark" aria-hidden="true">KMATS</div>
+    <div class="footer-grid">
+      <div>
+        <h4>About</h4>
+        <p class="footer-blurb">
+          Building innovative AI and software solutions for a global audience.
+          Empowering education and technology through purpose-driven development.
+        </p>
+        <p class="footer-blurb" style="margin-top:14px">Made by Krishank Shah · &amp; family.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="#story" data-cursor="link">Story</a></li>
+          <li><a href="#origin" data-cursor="link">Origin</a></li>
+          <li><a href="#services" data-cursor="link">Services</a></li>
+          <li><a href="#work" data-cursor="link">Work</a></li>
+          <li><a href="#values" data-cursor="link">Values</a></li>
+          <li><a href="#contact" data-cursor="link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="/privacy-policy" data-cursor="link">Privacy</a></li>
+          <li><a href="/terms-of-service" data-cursor="link">Terms</a></li>
+          <li><a href="/ai-ethics-data-policy" data-cursor="link">AI Ethics</a></li>
+          <li><a href="/intellectual-property-policy" data-cursor="link">IP Policy</a></li>
+          <li><a href="/nda" data-cursor="link">NDA</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:krishankshah@kmats.in" data-cursor="link">krishankshah@kmats.in</a></li>
+          <li><a href="tel:+918850622122" data-cursor="link">+91 88506 22122</a></li>
+          <li><a href="https://krishank.kmats.in/" target="_blank" rel="noopener" data-cursor="link">krishank.kmats.in</a></li>
+        </ul>
+        <div class="footer-socials" style="margin-top:18px">
+          <a href="#" aria-label="LinkedIn" data-cursor="link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6S0 4.88 0 3.5 1.12 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8h4.54v14H.22V8zm7.69 0h4.35v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V22h-4.54v-6.55c0-1.56-.03-3.57-2.18-3.57-2.18 0-2.51 1.7-2.51 3.45V22H7.91V8z"/></svg></a>
+          <a href="#" aria-label="Instagram" data-cursor="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Twitter" data-cursor="link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
+          <a href="#" aria-label="GitHub" data-cursor="link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.55-3.88-1.55-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.37-5.25 5.65.41.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Solutions</h4>
-      <a href="#">Machine Learning</a>
-      <a href="#">Natural Language</a>
-      <a href="#">Computer Vision</a>
-      <a href="#">Automation</a>
-      <a href="#">Data Engineering</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">About Us</a>
-      <a href="#">Careers</a>
-      <a href="#">Blog</a>
-      <a href="#">Case Studies</a>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <a href="mailto:hello@kmats.in">hello@kmats.in</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Twitter</a>
-      <a href="#">GitHub</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 KMATS. All rights reserved.</span>
-    <div class="footer-social">
-      <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-      <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M13.232 10.232L20 4"/></svg></a>
-      <a href="#" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+    <div class="footer-bottom">
+      <span>© 2026 KMATS AI &amp; Tech Consultancy LLP — All rights reserved.</span>
+      <span>Solo-built · Family-backed · World-focused</span>
+      <span>v1.0 · Mumbai</span>
     </div>
   </div>
 </footer>
 
 <script>
-(function() {
-  'use strict';
+/* =====================================================================
+   KMATS — interactivity layer (vanilla JS + GSAP + Lenis)
+   ===================================================================== */
+(function(){
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $  = (s, c=document) => c.querySelector(s);
+  const $$ = (s, c=document) => [...c.querySelectorAll(s)];
 
-  // ===== LENIS SMOOTH SCROLL =====
-  const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-  gsap.ticker.lagSmoothing(0);
+  /* ---------- LOADER ---------- */
+  function runLoader(){
+    const loader  = $('#loader');
+    const fill    = $('#loaderFill');
+    const pct     = $('#loaderPct');
+    const letters = $$('#loaderLetters span');
+    let p = 0;
+    const start = performance.now();
 
-  // ===== LOADER =====
-  const loader = document.getElementById('loader');
-  const loaderFill = document.getElementById('loaderFill');
-  let progress = 0;
-  const loaderInterval = setInterval(() => {
-    progress += Math.random() * 25 + 10;
-    if (progress > 100) progress = 100;
-    loaderFill.style.width = progress + '%';
-    if (progress >= 100) {
-      clearInterval(loaderInterval);
-      setTimeout(() => {
+    return new Promise(resolve => {
+      const step = (t) => {
+        const dt = (t - start) / 1100; // ~1.1s
+        p = Math.min(1, dt);
+        fill.style.width = (p*100).toFixed(1) + '%';
+        pct.textContent = String(Math.round(p*100)).padStart(3, '0');
+        if (p < 1) requestAnimationFrame(step);
+        else resolve();
+      };
+      requestAnimationFrame(step);
+
+      // letters
+      letters.forEach((el, i) => {
+        setTimeout(() => {
+          el.style.transition = 'transform .9s var(--e2), opacity .6s';
+          el.style.transform = 'translateY(0)';
+          el.style.opacity = '1';
+        }, 80 + i*70);
+      });
+    }).then(() => new Promise(r => setTimeout(r, 220)))
+      .then(() => {
         loader.classList.add('hidden');
-        initAnimations();
-      }, 400);
-    }
-  }, 200);
-
-  // ===== CUSTOM CURSOR =====
-  const cursor = document.getElementById('cursor');
-  let cx = 0, cy = 0, tx = 0, ty = 0;
-  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-  function updateCursor() {
-    cx += (tx - cx) * 0.15;
-    cy += (ty - cy) * 0.15;
-    cursor.style.transform = `translate(${cx - 9}px, ${cy - 9}px)`;
-    requestAnimationFrame(updateCursor);
+        setTimeout(() => loader.remove(), 1000);
+      });
   }
-  updateCursor();
-  document.querySelectorAll('a, button, .btn, .scard').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('h-link'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('h-link'));
-  });
 
-  // ===== NAVBAR =====
-  const navbar = document.getElementById('navbar');
-  let lastScroll = 0;
-  lenis.on('scroll', ({ scroll }) => {
-    navbar.classList.toggle('scrolled', scroll > 50);
-    navbar.classList.toggle('hide', scroll > lastScroll && scroll > 200);
-    lastScroll = scroll;
-    document.getElementById('pbar').style.width = (scroll / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
-  });
-
-  // ===== HAMBURGER =====
-  const ham = document.getElementById('ham');
-  const menuOverlay = document.getElementById('menuOverlay');
-  ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    menuOverlay.classList.toggle('open');
-    lenis[menuOverlay.classList.contains('open') ? 'stop' : 'start']();
-  });
-  window.closeMenu = function() {
-    ham.classList.remove('open');
-    menuOverlay.classList.remove('open');
-    lenis.start();
-  };
-
-  // ===== CARD SPOTLIGHT GLOW =====
-  document.querySelectorAll('.scard').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  /* ---------- LENIS ---------- */
+  function initLenis(){
+    if (REDUCED || typeof Lenis === 'undefined') return null;
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      lerp: 0.09,
+      orientation: 'vertical'
     });
-  });
-
-  // ===== TESTIMONIALS =====
-  const testimonials = [
-    { quote: '"KMATS didn\'t just deliver a model — they delivered a system that fundamentally changed how we make decisions. Their team understood our domain better than most internal hires."', name: 'Sarah Chen', role: 'CTO, MedTech Innovations', img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' },
-    { quote: '"What impressed us most was their ability to translate complex ML concepts into business outcomes. The fraud detection system paid for itself in three months."', name: 'Marcus Okafor', role: 'VP Engineering, FinServe Global', img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' },
-    { quote: '"We\'ve worked with three AI consultancies before. KMATS is the only one that delivered production-ready systems, not just Jupyter notebooks."', name: 'Priya Sharma', role: 'Head of Data, LogiChain', img: 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' }
-  ];
-  let currentTestimonial = 0;
-  const quoteEl = document.getElementById('testimonialQuote');
-  const authorEl = document.getElementById('testimonialAuthor');
-  const dotsEl = document.getElementById('testimonialDots');
-  function showTestimonial(idx) {
-    currentTestimonial = idx;
-    gsap.to(quoteEl, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
-      quoteEl.textContent = testimonials[idx].quote;
-      authorEl.querySelector('.testimonial-name').textContent = testimonials[idx].name;
-      authorEl.querySelector('.testimonial-role').textContent = testimonials[idx].role;
-      authorEl.querySelector('img').src = testimonials[idx].img;
-      gsap.to(quoteEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
-    }});
-    dotsEl.querySelectorAll('.testimonial-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    if (window.ScrollTrigger){
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((t)=> lenis.raf(t*1000));
+      gsap.ticker.lagSmoothing(0);
+    }
+    // Anchor links
+    $$('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id.length < 2) return;
+        const target = $(id);
+        if (target){
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -10 });
+        }
+      });
+    });
+    return lenis;
   }
-  dotsEl.querySelectorAll('.testimonial-dot').forEach(dot => {
-    dot.addEventListener('click', () => showTestimonial(parseInt(dot.dataset.idx)));
-  });
-  setInterval(() => showTestimonial((currentTestimonial + 1) % testimonials.length), 6000);
 
-  // ===== GSAP ANIMATIONS =====
-  function initAnimations() {
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  /* ---------- CURSOR ---------- */
+  function initCursor(){
+    if (matchMedia('(hover: none)').matches) return;
+    const c = $('#cursor');
+    let x = innerWidth/2, y = innerHeight/2, tx = x, ty = y;
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+    function tick(){
+      x += (tx - x) * 0.22; y += (ty - y) * 0.22;
+      c.style.transform = `translate(${x}px, ${y}px) translate(-50%,-50%)`;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
 
-    // Hero entrance
-    const heroTl = gsap.timeline({ delay: 0.2 });
-    heroTl
-      .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0)
-      .to('#heroTitle .line span', { y: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 }, 0.1)
-      .to('#heroDesc', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.5)
-      .to('#heroCtas', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.6)
-      .to('#heroStats', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.7);
+    // hover states
+    document.body.addEventListener('mouseover', e => {
+      const t = e.target.closest('[data-cursor]');
+      c.classList.remove('is-link','is-text');
+      if (!t) return;
+      const k = t.getAttribute('data-cursor');
+      if (k === 'link') c.classList.add('is-link');
+      if (k === 'text') c.classList.add('is-text');
+    });
+  }
 
-    // Counter animation
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const target = parseInt(el.dataset.count);
-      ScrollTrigger.create({
-        trigger: el, start: 'top 80%',
-        onEnter: () => {
-          gsap.to({ val: 0 }, {
-            val: target, duration: 2, ease: 'power2.out',
-            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val).toLocaleString(); }
-          });
-        }, once: true
+  /* ---------- MAGNETIC BUTTONS ---------- */
+  function initMagnetic(){
+    if (matchMedia('(hover: none)').matches) return;
+    $$('[data-magnet]').forEach(el => {
+      const strength = 0.28;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width/2)) * strength;
+        const dy = (e.clientY - (r.top + r.height/2)) * strength;
+        el.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform .55s var(--e2)';
+        el.style.transform = '';
+        setTimeout(()=> el.style.transition = '', 600);
+      });
+    });
+  }
+
+  /* ---------- PROGRESS BAR ---------- */
+  function initProgress(){
+    const bar = $('#progress');
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const v = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      bar.style.width = (v*100).toFixed(2) + '%';
+    };
+    addEventListener('scroll', update, { passive:true });
+    update();
+  }
+
+  /* ---------- NAV ---------- */
+  function initNav(){
+    const nav = $('#nav');
+    let lastY = 0;
+    addEventListener('scroll', () => {
+      const y = scrollY;
+      nav.classList.toggle('is-scrolled', y > 24);
+      // Hide on scroll down past hero
+      if (y > 600 && y > lastY + 6) nav.classList.add('is-hidden');
+      else if (y < lastY - 6) nav.classList.remove('is-hidden');
+      lastY = y;
+    }, { passive: true });
+
+    // mobile menu
+    const burger = $('#burger');
+    const menu = $('#menu');
+    burger.addEventListener('click', () => {
+      const open = menu.classList.toggle('is-open');
+      nav.classList.toggle('is-menu', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('is-locked', open);
+    });
+    $$('#menu a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      nav.classList.remove('is-menu');
+      burger.setAttribute('aria-expanded','false');
+      document.body.classList.remove('is-locked');
+    }));
+  }
+
+  /* ---------- HERO REVEAL ---------- */
+  function heroReveal(){
+    if (typeof gsap === 'undefined') return;
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    tl.from('.hero-meta .col', { y: 24, opacity: 0, duration: 1.0, stagger: 0.08 }, 0)
+      .from('.hero-title .row > span', { yPercent: 110, duration: 1.4, stagger: 0.12 }, 0.1)
+      .from('.hero-lead', { y: 20, opacity: 0, duration: 1.0 }, 0.5)
+      .from('.hero-ctas .btn', { y: 20, opacity: 0, duration: 0.9, stagger: 0.08 }, 0.55)
+      .from('.scroll-cue', { opacity: 0, y: 10, duration: 0.7 }, 0.8);
+  }
+
+  /* ---------- SECTION REVEALS ---------- */
+  function sectionReveals(){
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Section headers
+    $$('.section-num').forEach(el => {
+      gsap.from(el, {
+        opacity: 0, y: 12, duration: .8, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
+    });
+    $$('.section-head').forEach(el => {
+      gsap.from(el.querySelectorAll('h2, p'), {
+        opacity: 0, y: 24, duration: 1, ease: 'expo.out', stagger: .08,
+        scrollTrigger: { trigger: el, start: 'top 85%' }
       });
     });
 
-    // Reveal animations
-    document.querySelectorAll('.rv').forEach(el => {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%',
-        onEnter: () => el.classList.add('vis'), once: true
+    // manifesto text — split words
+    const m = $('.manifesto-text');
+    if (m && window.SplitText){
+      const split = new SplitText(m, { type: 'words' });
+      gsap.from(split.words, {
+        opacity: .12, duration: 1.2, ease: 'expo.out', stagger: .025,
+        scrollTrigger: { trigger: m, start: 'top 80%', end: 'bottom 20%', scrub: false }
       });
-    });
-
-    // Text reveal
-    document.querySelectorAll('.trl').forEach(el => {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%',
-        onEnter: () => el.classList.add('vis'), once: true
-      });
-    });
-
-    // Horizontal scroll showcase
-    const track = document.getElementById('showcaseTrack');
-    const wrap = document.getElementById('showcaseWrap');
-    if (track && wrap) {
-      const cards = track.querySelectorAll('.showcase-card');
-      const totalWidth = Array.from(cards).reduce((acc, c) => acc + c.offsetWidth + 32, 0);
-      gsap.to(track, {
-        x: () => -(totalWidth - window.innerWidth + 100),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: wrap, start: 'top 10%', end: () => `+=${totalWidth}`,
-          scrub: 1, pin: true, anticipatePin: 1,
-        }
-      });
+    } else if (m){
+      gsap.from(m, { opacity: 0, y: 20, duration: 1.2, ease:'expo.out',
+        scrollTrigger: { trigger: m, start: 'top 80%' }});
     }
 
-    // Process timeline line
-    const processLine = document.getElementById('processLine');
-    const processSteps = document.getElementById('processSteps');
-    if (processLine && processSteps) {
-      gsap.to(processLine, {
-        height: '100%', ease: 'none',
-        scrollTrigger: {
-          trigger: processSteps, start: 'top 60%', end: 'bottom 40%', scrub: 1,
-        }
+    // origin cards
+    gsap.from('.origin-card', {
+      opacity: 0, y: 32, duration: 1, ease: 'expo.out', stagger: .07,
+      scrollTrigger: { trigger: '.origin-grid', start: 'top 82%' }
+    });
+
+    // bento
+    gsap.from('.b-card', {
+      opacity: 0, y: 28, duration: .9, ease: 'expo.out', stagger: .06,
+      scrollTrigger: { trigger: '.bento', start: 'top 82%' }
+    });
+
+    // values
+    gsap.from('.value', {
+      opacity: 0, y: 24, duration: .9, ease: 'expo.out', stagger: .07,
+      scrollTrigger: { trigger: '.values-grid', start: 'top 85%' }
+    });
+
+    // stats counters
+    $$('[data-count]').forEach(el => {
+      const target = parseFloat(el.dataset.count) || 0;
+      gsap.fromTo(el, { innerText: 0 }, {
+        innerText: target, duration: 1.6, ease: 'power2.out',
+        snap: { innerText: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%' }
       });
+    });
+
+    // footer mark parallax
+    gsap.to('.footer-mark', {
+      yPercent: -10, scrollTrigger: { trigger: '.footer', start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  }
+
+  /* ---------- HERO CANVAS — animated mesh gradient ---------- */
+  function initHeroCanvas(){
+    const canvas = $('#heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth * devicePixelRatio;
+    let h = canvas.height = innerHeight * devicePixelRatio;
+
+    function resize(){
+      w = canvas.width = innerWidth * devicePixelRatio;
+      h = canvas.height = innerHeight * devicePixelRatio;
     }
+    addEventListener('resize', resize);
 
-    // Parallax on philosophy image
-    gsap.to('.philosophy-img img', {
-      y: -60, ease: 'none',
-      scrollTrigger: { trigger: '.philosophy-section', start: 'top bottom', end: 'bottom top', scrub: 1 }
+    const blobs = [
+      { x: .25, y: .35, r: .55, c: [44,216,196] },   // teal
+      { x: .82, y: .25, r: .45, c: [79, 58, 214] },  // plum
+      { x: .55, y: .85, r: .50, c: [240, 169, 59] }, // amber
+      { x: .15, y: .80, r: .40, c: [44,216,196] },
+    ];
+
+    let mx = .5, my = .5;
+    addEventListener('mousemove', e => {
+      mx = e.clientX / innerWidth;
+      my = e.clientY / innerHeight;
     });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          lenis.scrollTo(target, { offset: -80, duration: 1.5 });
-          closeMenu();
-        }
+    let t = 0;
+    function frame(){
+      t += 0.0035;
+      // base
+      ctx.fillStyle = '#0b0b0c';
+      ctx.fillRect(0,0,w,h);
+
+      // composite blobs
+      ctx.globalCompositeOperation = 'lighter';
+      blobs.forEach((b, i) => {
+        const ox = Math.sin(t * (1.1 + i*0.2)) * 0.12 + (mx - .5) * 0.05;
+        const oy = Math.cos(t * (0.9 + i*0.2)) * 0.10 + (my - .5) * 0.05;
+        const cx = (b.x + ox) * w;
+        const cy = (b.y + oy) * h;
+        const rr = b.r * Math.min(w,h);
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rr);
+        const [r,g,bl] = b.c;
+        grad.addColorStop(0,    `rgba(${r},${g},${bl},${i===0?0.55:0.32})`);
+        grad.addColorStop(0.45, `rgba(${r},${g},${bl},0.10)`);
+        grad.addColorStop(1,    `rgba(${r},${g},${bl},0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rr, 0, Math.PI*2);
+        ctx.fill();
       });
+      ctx.globalCompositeOperation = 'source-over';
+
+      // dim overlay for text legibility
+      const ov = ctx.createLinearGradient(0,0,0,h);
+      ov.addColorStop(0, 'rgba(11,11,12,0.20)');
+      ov.addColorStop(0.55, 'rgba(11,11,12,0.55)');
+      ov.addColorStop(1, 'rgba(11,11,12,0.85)');
+      ctx.fillStyle = ov;
+      ctx.fillRect(0,0,w,h);
+
+      requestAnimationFrame(frame);
+    }
+    if (REDUCED){
+      // Single static frame
+      frame();
+    } else {
+      requestAnimationFrame(frame);
+    }
+  }
+
+  /* ---------- BOOT ---------- */
+  function boot(){
+    initHeroCanvas();
+    initCursor();
+    initMagnetic();
+    initProgress();
+    initNav();
+
+    runLoader().then(() => {
+      const lenis = initLenis();
+      heroReveal();
+      sectionReveals();
     });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
   }
 })();
 </script>
+
 </body>
 </html>
