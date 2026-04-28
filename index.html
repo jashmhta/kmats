@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KMATS — AI & Technology Solutions</title>
+  <meta name="description" content="KMATS delivers cutting-edge AI solutions in machine learning, automation, and digital transformation. Building tomorrow's intelligence, today.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kmats.in/">
+  <meta property="og:title" content="KMATS — AI & Technology Solutions">
+  <meta property="og:description" content="Cutting-edge AI solutions in machine learning, automation, and digital transformation.">
+  <meta property="og:image" content="https://kmats.in/og-image.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bgCard: #161616;
+      --text: #f0ede5;
+      --tdim: rgba(240,237,229,0.45);
+      --accent: #00d4aa;
+      --accent2: #00b896;
+      --aGlow: rgba(0,212,170,0.12);
+      --border: rgba(255,255,255,0.07);
+      --borderS: rgba(255,255,255,0.12);
+      --glass: rgba(10,10,10,0.72);
+      --glassS: rgba(10,10,10,0.92);
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --shadowLg: 0 24px 64px rgba(0,0,0,0.5);
+      --grain: 0.04;
+      --ez: cubic-bezier(0.32,0.72,0,1);
+      --ez2: cubic-bezier(0.16,1,0.3,1);
+    }
+
+    html { scroll-behavior: auto; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+    body {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    /* ===== GRAIN ===== */
+    #grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 100;
+      opacity: var(--grain); mix-blend-mode: overlay;
+    }
+    #grain::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ===== CUSTOM CURSOR ===== */
+    #cursor {
+      position: fixed; top: 0; left: 0; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--accent); pointer-events: none;
+      z-index: 9999; mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s var(--ez), height 0.25s var(--ez), background 0.25s, opacity 0.25s;
+    }
+    #cursor.h-link { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); mix-blend-mode: normal; }
+    #cursor.h-btn { width: 64px; height: 64px; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); mix-blend-mode: normal; }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #pbar { position: fixed; top: 0; left: 0; height: 2px; z-index: 9998; background: var(--accent); width: 0; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; z-index: 10000; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 2rem;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.8s var(--ez2), visibility 0.8s; }
+    .loader-text {
+      font-family: 'Cabinet Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900; letter-spacing: -0.04em; color: var(--text);
+      overflow: hidden;
+    }
+    .loader-text span { display: block; transform: translateY(110%); }
+    .loader-bar { width: 200px; height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+    .loader-bar-fill { width: 0; height: 100%; background: var(--accent); border-radius: 1px; transition: width 0.3s var(--ez); }
+
+    /* ===== NAV ===== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem; transition: all 0.6s var(--ez);
+    }
+    #navbar.scrolled {
+      background: var(--glassS); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);
+      padding: 1rem 2.5rem;
+    }
+    #navbar.hide { transform: translateY(-100%); }
+    .nav-logo {
+      font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900;
+      font-size: 1.25rem; letter-spacing: -0.03em; color: var(--text);
+      text-decoration: none; position: relative;
+    }
+    .nav-logo::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 100%; height: 2px; background: var(--accent);
+      transform: scaleX(0); transform-origin: right; transition: transform 0.4s var(--ez);
+    }
+    .nav-logo:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-link {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--tdim); text-decoration: none;
+      transition: color 0.3s; position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 100%; height: 1px; background: var(--accent);
+      transform: scaleX(0); transition: transform 0.3s var(--ez);
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--bg); background: var(--accent);
+      padding: 0.65rem 1.5rem; border-radius: 100px; text-decoration: none;
+      transition: all 0.3s var(--ez);
+    }
+    .nav-cta:hover { background: var(--text); transform: scale(1.03); }
+
+    /* Hamburger */
+    .ham { display: none; width: 24px; height: 18px; flex-direction: column; justify-content: space-between; cursor: none; background: none; border: none; }
+    .ham span { display: block; width: 100%; height: 1.5px; background: var(--text); transition: all 0.4s var(--ez); transform-origin: center; }
+    .ham span:nth-child(2) { width: 65%; margin-left: auto; }
+    .ham.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .ham.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+    .ham.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile Menu Overlay */
+    #menuOverlay {
+      position: fixed; inset: 0; z-index: 49; background: var(--glassS);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.5s var(--ez);
+    }
+    #menuOverlay.open { opacity: 1; pointer-events: auto; }
+    .mlink {
+      display: block; font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 900;
+      line-height: 1.1; color: var(--text); text-decoration: none;
+      opacity: 0; transform: translateY(2rem);
+      transition: all 0.7s var(--ez2);
+    }
+    #menuOverlay.open .mlink { opacity: 1; transform: translateY(0); }
+    .mlink:nth-child(1){transition-delay:0.06s}
+    .mlink:nth-child(2){transition-delay:0.12s}
+    .mlink:nth-child(3){transition-delay:0.18s}
+    .mlink:nth-child(4){transition-delay:0.24s}
+    .mlink:nth-child(5){transition-delay:0.30s}
+    .mlink:hover { color: var(--accent); }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .rv { opacity: 0; transform: translateY(4rem); filter: blur(8px); }
+    .rv.vis { opacity: 1; transform: translateY(0); filter: blur(0); transition: opacity 1.2s var(--ez2), transform 1.2s var(--ez2), filter 1.2s var(--ez2); }
+    .trl { overflow: hidden; }
+    .trl span { display: block; transform: translateY(110%); }
+    .trl.vis span { transform: translateY(0); transition: transform 1s var(--ez2); }
+    .trl:nth-child(2) span { transition-delay: 0.1s; }
+    .trl:nth-child(3) span { transition-delay: 0.2s; }
+    .trl:nth-child(4) span { transition-delay: 0.3s; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      border-radius: 100px; padding: 1rem 2rem; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: all 0.5s var(--ez); text-decoration: none; cursor: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn1 { background: var(--accent); color: var(--bg); }
+    .btn1:hover { background: var(--text); box-shadow: 0 0 40px rgba(0,212,170,0.2); }
+    .btn2 { background: transparent; box-shadow: inset 0 0 0 1px var(--borderS); color: var(--text); }
+    .btn2:hover { background: var(--bgCard); box-shadow: inset 0 0 0 1px var(--accent); }
+    .btn-aw {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: rgba(255,255,255,0.1); display: flex;
+      align-items: center; justify-content: center;
+      transition: all 0.5s var(--ez);
+    }
+    .btn1 .btn-aw { background: rgba(0,0,0,0.15); }
+    .btn:hover .btn-aw { transform: translateX(3px) translateY(-1px); }
+
+    /* ===== SPOTLIGHT BORDER CARD ===== */
+    .scard {
+      position: relative; border-radius: 1.5rem; overflow: hidden;
+      background: var(--bgCard); border: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+    .scard::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), var(--aGlow), transparent 50%);
+      opacity: 0; transition: opacity 0.4s; pointer-events: none; z-index: 2;
+    }
+    .scard:hover::before { opacity: 1; }
+    .scard:hover { border-color: rgba(0,212,170,0.2); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100dvh; display: flex;
+      align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,212,170,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,100,80,0.06) 0%, transparent 50%),
+        linear-gradient(to bottom, transparent 60%, var(--bg));
+    }
+    .hero-mesh {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 25% 25%, rgba(0,212,170,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0,180,150,0.03) 0%, transparent 50%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image:
+        linear-gradient(var(--text) 1px, transparent 1px),
+        linear-gradient(90deg, var(--text) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-content {
+      position: relative; z-index: 10; width: 100%;
+      max-width: 1440px; margin: 0 auto; padding: 8rem 2.5rem 4rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border-radius: 100px; padding: 0.5rem 1rem;
+      background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.15);
+      margin-bottom: 2.5rem;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero-eyebrow-text { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+    .hero-title {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 8.5rem); font-weight: 900;
+      line-height: 0.92; letter-spacing: -0.04em; max-width: 900px;
+      margin-bottom: 2rem;
+    }
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .line span { display: block; transform: translateY(110%); }
+    .hero-title .accent-word { color: var(--accent); }
+    .hero-desc {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem); line-height: 1.7;
+      color: var(--tdim); max-width: 500px; margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      position: absolute; right: 2.5rem; bottom: 4rem;
+      display: flex; gap: 3rem; z-index: 10;
+    }
+    .hero-stat-num {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900;
+      color: var(--accent); letter-spacing: -0.03em;
+    }
+    .hero-stat-label {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--tdim); margin-top: 0.25rem;
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%); display: flex;
+      flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--tdim); z-index: 10;
+    }
+    .scroll-indicator span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+    .scroll-line { width: 1px; height: 40px; background: var(--tdim); animation: scroll-pulse 2s ease-in-out infinite; }
+    @keyframes scroll-pulse { 0%,100% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.3; transform: scaleY(0.6); } }
+
+    /* ===== MARQUEE ===== */
+    .marquee-section {
+      padding: 2rem 0; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); overflow: hidden;
+    }
+    .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-item {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 700;
+      letter-spacing: -0.02em; white-space: nowrap; padding: 0 2rem;
+      color: var(--tdim); transition: color 0.3s;
+    }
+    .marquee-item:hover { color: var(--accent); }
+    .marquee-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent); align-self: center; flex-shrink: 0;
+    }
+
+    /* ===== ABOUT / PHILOSOPHY ===== */
+    .philosophy-section {
+      padding: 10rem 2.5rem; position: relative;
+    }
+    .philosophy-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .philosophy-visual { position: relative; }
+    .philosophy-img {
+      width: 100%; aspect-ratio: 4/5; border-radius: 1.5rem;
+      overflow: hidden; position: relative;
+    }
+    .philosophy-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: contrast(1.05) brightness(0.9);
+      transition: transform 1.2s var(--ez);
+    }
+    .philosophy-img:hover img { transform: scale(1.05); }
+    .philosophy-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.4), transparent 50%);
+    }
+    .philosophy-float {
+      position: absolute; bottom: -2rem; right: -2rem;
+      background: var(--bgCard); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.5rem 2rem;
+      backdrop-filter: blur(12px); z-index: 2;
+    }
+    .philosophy-float-num {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 2.5rem; font-weight: 900; color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    .philosophy-float-label {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--tdim);
+    }
+    .philosophy-content h2 {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 900;
+      line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 2rem;
+    }
+    .philosophy-content p {
+      font-size: 1rem; line-height: 1.8; color: var(--tdim);
+      max-width: 480px; margin-bottom: 1.5rem; font-weight: 400;
+    }
+    .philosophy-content p:last-of-type { margin-bottom: 2.5rem; }
+
+    /* ===== SERVICES BENTO ===== */
+    .services-section {
+      padding: 10rem 2.5rem; background: var(--bg2);
+      position: relative;
+    }
+    .services-header {
+      max-width: 1440px; margin: 0 auto 4rem;
+    }
+    .section-tag {
+      display: inline-block; border-radius: 100px;
+      padding: 0.4rem 1rem; font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid rgba(0,212,170,0.2);
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900;
+      line-height: 0.95; letter-spacing: -0.03em; max-width: 700px;
+    }
+    .bento-grid {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto; gap: 1.25rem;
+    }
+    .bento-card {
+      border-radius: 1.5rem; padding: 2.5rem;
+      background: var(--bgCard); border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, transform 0.5s var(--ez);
+    }
+    .bento-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), var(--aGlow), transparent 50%);
+      opacity: 0; transition: opacity 0.4s; pointer-events: none;
+    }
+    .bento-card:hover::before { opacity: 1; }
+    .bento-card:hover { border-color: rgba(0,212,170,0.15); transform: translateY(-4px); }
+    .bento-lg { grid-column: span 2; grid-row: span 2; padding: 3rem; }
+    .bento-wide { grid-column: span 2; }
+    .bento-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; color: var(--accent);
+    }
+    .bento-card h3 {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .bento-lg h3 { font-size: 2rem; }
+    .bento-card p { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); }
+    .bento-lg p { font-size: 0.95rem; max-width: 400px; }
+    .bento-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.15; transition: opacity 0.6s;
+    }
+    .bento-card:hover .bento-video { opacity: 0.25; }
+    .bento-stat-num {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(3rem, 5vw, 5rem); font-weight: 900;
+      color: var(--accent); letter-spacing: -0.04em; line-height: 1;
+    }
+    .bento-stat-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--tdim); margin-top: 0.5rem;
+    }
+
+    /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
+    .showcase-section {
+      position: relative; overflow: hidden;
+      padding: 10rem 0 0;
+    }
+    .showcase-header {
+      max-width: 1440px; margin: 0 auto; padding: 0 2.5rem 4rem;
+    }
+    .showcase-wrap { overflow: hidden; }
+    .showcase-track { display: flex; will-change: transform; }
+    .showcase-card {
+      flex-shrink: 0; width: 500px; margin-right: 2rem;
+      border-radius: 1.5rem; overflow: hidden;
+      background: var(--bgCard); border: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+    .showcase-card:hover { border-color: rgba(0,212,170,0.2); }
+    .showcase-card-img {
+      width: 100%; height: 300px; overflow: hidden;
+    }
+    .showcase-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: contrast(1.05) brightness(0.85);
+      transition: transform 0.8s var(--ez);
+    }
+    .showcase-card:hover .showcase-card-img img { transform: scale(1.06); }
+    .showcase-card-body { padding: 2rem; }
+    .showcase-card-tag {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .showcase-card-title {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .showcase-card-desc { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); }
+
+    /* ===== PROCESS ===== */
+    .process-section {
+      padding: 10rem 2.5rem; background: var(--bg2);
+    }
+    .process-inner {
+      max-width: 1000px; margin: 0 auto;
+    }
+    .process-header { text-align: center; margin-bottom: 5rem; }
+    .process-header .section-title { margin: 0 auto; }
+    .process-steps { position: relative; }
+    .process-line {
+      position: absolute; top: 0; left: 1.5rem;
+      width: 2px; height: 0; background: var(--accent);
+      border-radius: 1px; transform-origin: top;
+    }
+    .process-step {
+      display: flex; gap: 2.5rem; align-items: flex-start;
+      padding: 2.5rem 0; position: relative;
+    }
+    .process-step-num {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--accent); color: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 900; z-index: 2;
+    }
+    .process-step h3 {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .process-step p { font-size: 0.9rem; line-height: 1.7; color: var(--tdim); max-width: 500px; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section { padding: 10rem 2.5rem; }
+    .testimonials-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .testimonials-inner .section-tag { margin-bottom: 2rem; }
+    .testimonial-quote {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700;
+      line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; justify-content: center; }
+    .testimonial-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--accent);
+    }
+    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonial-name { font-weight: 700; font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.75rem; color: var(--tdim); }
+    .testimonial-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 2rem; }
+    .testimonial-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: all 0.3s var(--ez);
+    }
+    .testimonial-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 10rem 2.5rem; background: var(--bg2);
+      position: relative; overflow: hidden;
+    }
+    .cta-beam {
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%; pointer-events: none;
+      filter: blur(150px); opacity: 0.08;
+      background: var(--accent);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+      position: relative; z-index: 2;
+    }
+    .cta-inner .section-title { margin: 0 auto 1.5rem; }
+    .cta-inner p { font-size: 1rem; line-height: 1.7; color: var(--tdim); margin-bottom: 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 5rem 2.5rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+    }
+    .footer-brand-name {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; color: var(--tdim); max-width: 300px; }
+    .footer-col h4 {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text); margin-bottom: 1.5rem;
+    }
+    .footer-col a {
+      display: block; font-size: 0.85rem; color: var(--tdim);
+      text-decoration: none; padding: 0.35rem 0;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1440px; margin: 3rem auto 0;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom span { font-size: 0.75rem; color: var(--tdim); }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--tdim); transition: all 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: repeat(2, 1fr); }
+      .bento-lg { grid-column: span 2; grid-row: span 1; }
+      .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-stats { position: relative; right: auto; bottom: auto; margin-top: 3rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 767px) {
+      html { cursor: auto; }
+      #cursor, #pbar { display: none; }
+      .ham { display: flex; }
+      .nav-links, .nav-cta { display: none; }
+      #navbar { padding: 1rem 1.5rem; }
+      .hero-content { padding: 7rem 1.5rem 3rem; }
+      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .hero-stats { flex-wrap: wrap; gap: 2rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-lg, .bento-wide { grid-column: span 1; }
+      .showcase-card { width: 85vw; }
+      .philosophy-section, .services-section, .process-section, .testimonials-section, .cta-section { padding: 6rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      button, a, .btn { cursor: pointer; }
+      .process-step { flex-direction: column; gap: 1rem; }
+      .philosophy-float { position: relative; bottom: auto; right: auto; margin-top: 1rem; display: inline-block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-text"><span>KMATS</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+</div>
+
+<!-- Grain -->
+<div id="grain" aria-hidden="true"></div>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+
+<!-- Progress Bar -->
+<div id="pbar"></div>
+
+<!-- Navigation -->
+<header id="navbar">
+  <a href="#" class="nav-logo">KMATS</a>
+  <div class="nav-links">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#solutions" class="nav-link">Solutions</a>
+    <a href="#process" class="nav-link">Process</a>
+    <a href="#about" class="nav-link">About</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile Menu -->
+<div id="menuOverlay">
+  <nav style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+    <a href="#services" class="mlink" onclick="closeMenu()">Services</a>
+    <a href="#solutions" class="mlink" onclick="closeMenu()">Solutions</a>
+    <a href="#process" class="mlink" onclick="closeMenu()">Process</a>
+    <a href="#about" class="mlink" onclick="closeMenu()">About</a>
+    <a href="#contact" class="mlink" onclick="closeMenu()">Contact</a>
+  </nav>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-gradient"></div>
+    <div class="hero-mesh"></div>
+    <div class="hero-grid-lines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      <span class="hero-eyebrow-text">AI & Technology Solutions</span>
+    </div>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line"><span>Building</span></span>
+      <span class="line"><span>tomorrow's</span></span>
+      <span class="line"><span><em class="accent-word">intelligence</em></span></span>
+    </h1>
+    <p class="hero-desc" id="heroDesc">
+      We partner with ambitious teams to design, build, and deploy AI systems that transform how businesses operate, decide, and grow.
+    </p>
+    <div class="hero-ctas" id="heroCtas">
+      <a href="#contact" class="btn btn1">Start a Project <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+      <a href="#solutions" class="btn btn2">Explore Solutions</a>
+    </div>
+    <div class="hero-stats" id="heroStats">
+      <div>
+        <div class="hero-stat-num" data-count="150">0</div>
+        <div class="hero-stat-label">Projects Delivered</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-count="40">0</div>
+        <div class="hero-stat-label">Enterprise Clients</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-count="98">0</div>
+        <div class="hero-stat-label">Success Rate %</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<section class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Machine Learning</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Natural Language Processing</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Computer Vision</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Process Automation</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Predictive Analytics</span><span class="marquee-dot"></span>
+    <span class="marquee-item">MLOps & Deployment</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Data Engineering</span><span class="marquee-dot"></span>
+    <span class="marquee-item">AI Strategy</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Machine Learning</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Natural Language Processing</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Computer Vision</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Process Automation</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Predictive Analytics</span><span class="marquee-dot"></span>
+    <span class="marquee-item">MLOps & Deployment</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Data Engineering</span><span class="marquee-dot"></span>
+    <span class="marquee-item">AI Strategy</span><span class="marquee-dot"></span>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY / ABOUT ===== -->
+<section class="philosophy-section" id="about">
+  <div class="philosophy-inner">
+    <div class="philosophy-visual rv">
+      <div class="philosophy-img">
+        <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=900" alt="KMATS team collaborating on AI solutions" loading="lazy">
+      </div>
+      <div class="philosophy-float">
+        <div class="philosophy-float-num" data-count="8">0</div>
+        <div class="philosophy-float-label">Years of Innovation</div>
+      </div>
+    </div>
+    <div class="philosophy-content">
+      <span class="section-tag rv">Who We Are</span>
+      <h2 class="rv" style="transition-delay:0.1s">
+        <span class="trl"><span>We don't just build AI.</span></span>
+        <span class="trl"><span>We build the systems</span></span>
+        <span class="trl"><span>that <em style="color:var(--accent);font-style:normal;">think</em>.</span></span>
+      </h2>
+      <p class="rv" style="transition-delay:0.2s">KMATS was founded on a simple premise: artificial intelligence should amplify human capability, not replace it. We design systems that learn, adapt, and evolve alongside your business.</p>
+      <p class="rv" style="transition-delay:0.3s">From early-stage startups to Fortune 500 enterprises, we've helped teams across healthcare, finance, logistics, and retail harness the full potential of machine learning and automation.</p>
+      <a href="#services" class="btn btn2 rv" style="transition-delay:0.4s">Our Capabilities <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES BENTO ===== -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <span class="section-tag rv">What We Do</span>
+    <h2 class="section-title rv" style="transition-delay:0.1s">Capabilities that drive real outcomes</h2>
+  </div>
+  <div class="bento-grid">
+    <div class="bento-card bento-lg rv scard">
+      <video class="bento-video" autoplay muted loop playsinline preload="none">
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
+      </video>
+      <div style="position:relative;z-index:3;">
+        <div class="bento-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Machine Learning & Deep Learning</h3>
+        <p>Custom ML pipelines from data ingestion to production deployment. We build recommendation engines, fraud detection systems, demand forecasting models, and neural architectures tailored to your domain.</p>
+      </div>
+    </div>
+    <div class="bento-card rv scard" style="transition-delay:0.08s">
+      <div class="bento-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Natural Language</h3>
+      <p>Conversational AI, document intelligence, and semantic search systems powered by large language models and fine-tuned transformers.</p>
+    </div>
+    <div class="bento-card rv scard" style="transition-delay:0.12s">
+      <div class="bento-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+      </div>
+      <h3>Computer Vision</h3>
+      <p>Object detection, image classification, video analytics, and visual quality inspection systems that see what humans miss.</p>
+    </div>
+    <div class="bento-card bento-wide rv scard" style="transition-delay:0.16s">
+      <div class="bento-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Process Automation & RPA</h3>
+      <p>Intelligent automation that goes beyond rule-based tasks. We combine RPA with AI decision-making to automate complex workflows, reducing operational costs by up to 60% while maintaining accuracy and compliance.</p>
+    </div>
+    <div class="bento-card rv scard" style="transition-delay:0.20s">
+      <div class="bento-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <h3>Data Engineering</h3>
+      <p>Scalable data pipelines, lakehouse architectures, and real-time streaming infrastructure that fuel your AI initiatives.</p>
+    </div>
+    <div class="bento-card rv scard" style="transition-delay:0.24s">
+      <div class="bento-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      </div>
+      <h3>AI Strategy</h3>
+      <p>Roadmap design, feasibility assessment, and organizational AI readiness audits that align technology investments with business outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HORIZONTAL SCROLL SHOWCASE ===== -->
+<section class="showcase-section" id="solutions">
+  <div class="showcase-header">
+    <span class="section-tag rv">Case Studies</span>
+    <h2 class="section-title rv" style="transition-delay:0.1s">Solutions in action</h2>
+  </div>
+  <div class="showcase-wrap" id="showcaseWrap">
+    <div class="showcase-track" id="showcaseTrack">
+      <div class="showcase-card">
+        <div class="showcase-card-img">
+          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Healthcare AI solution" loading="lazy">
+        </div>
+        <div class="showcase-card-body">
+          <div class="showcase-card-tag">Healthcare</div>
+          <h3 class="showcase-card-title">Predictive Patient Analytics</h3>
+          <p class="showcase-card-desc">Built an early warning system for ICU patient deterioration, reducing critical events by 34% across a network of 12 hospitals.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img">
+          <img src="https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Finance AI solution" loading="lazy">
+        </div>
+        <div class="showcase-card-body">
+          <div class="showcase-card-tag">Finance</div>
+          <h3 class="showcase-card-title">Real-Time Fraud Detection</h3>
+          <p class="showcase-card-desc">Deployed a graph neural network that processes 2M+ transactions daily, catching fraudulent patterns with 99.2% precision.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Logistics AI solution" loading="lazy">
+        </div>
+        <div class="showcase-card-body">
+          <div class="showcase-card-tag">Logistics</div>
+          <h3 class="showcase-card-title">Autonomous Route Optimization</h3>
+          <p class="showcase-card-desc">Designed a reinforcement learning system that reduced delivery fleet fuel costs by 28% and improved on-time rates to 97%.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img">
+          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Retail AI solution" loading="lazy">
+        </div>
+        <div class="showcase-card-body">
+          <div class="showcase-card-tag">Retail</div>
+          <h3 class="showcase-card-title">Demand Forecasting Engine</h3>
+          <p class="showcase-card-desc">ML-powered inventory prediction that cut stockouts by 45% and reduced overstock waste by $12M annually for a major retailer.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img">
+          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900" alt="Manufacturing AI solution" loading="lazy">
+        </div>
+        <div class="showcase-card-body">
+          <div class="showcase-card-tag">Manufacturing</div>
+          <h3 class="showcase-card-title">Visual Quality Inspection</h3>
+          <p class="showcase-card-desc">Computer vision system inspecting 10,000+ parts per hour on automotive assembly lines, achieving 99.7% defect detection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process-section" id="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <span class="section-tag rv">How We Work</span>
+      <h2 class="section-title rv" style="transition-delay:0.1s">From concept to production</h2>
+    </div>
+    <div class="process-steps" id="processSteps">
+      <div class="process-line" id="processLine"></div>
+      <div class="process-step rv">
+        <div class="process-step-num">01</div>
+        <div>
+          <h3>Discovery & Scoping</h3>
+          <p>We deep-dive into your business challenge, data landscape, and success metrics. No cookie-cutter solutions — every engagement starts with understanding your unique context.</p>
+        </div>
+      </div>
+      <div class="process-step rv" style="transition-delay:0.1s">
+        <div class="process-step-num">02</div>
+        <div>
+          <h3>Architecture & Prototyping</h3>
+          <p>Rapid prototyping to validate feasibility. We design the system architecture, select the right models, and build a proof-of-concept in weeks, not months.</p>
+        </div>
+      </div>
+      <div class="process-step rv" style="transition-delay:0.2s">
+        <div class="process-step-num">03</div>
+        <div>
+          <h3>Development & Training</h3>
+          <p>Iterative model development with continuous evaluation. We build robust pipelines, train on your data, and optimize for production-grade performance.</p>
+        </div>
+      </div>
+      <div class="process-step rv" style="transition-delay:0.3s">
+        <div class="process-step-num">04</div>
+        <div>
+          <h3>Deployment & Monitoring</h3>
+          <p>Production deployment with real-time monitoring, drift detection, and automated retraining. We don't hand off and disappear — we ensure long-term reliability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <span class="section-tag rv">Client Voices</span>
+    <div class="rv" style="transition-delay:0.1s">
+      <blockquote class="testimonial-quote" id="testimonialQuote">
+        "KMATS didn't just deliver a model — they delivered a system that fundamentally changed how we make decisions. Their team understood our domain better than most internal hires."
+      </blockquote>
+      <div class="testimonial-author" id="testimonialAuthor">
+        <div class="testimonial-avatar">
+          <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200" alt="Sarah Chen" loading="lazy">
+        </div>
+        <div style="text-align:left;">
+          <div class="testimonial-name">Sarah Chen</div>
+          <div class="testimonial-role">CTO, MedTech Innovations</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-dots" id="testimonialDots">
+      <div class="testimonial-dot active" data-idx="0"></div>
+      <div class="testimonial-dot" data-idx="1"></div>
+      <div class="testimonial-dot" data-idx="2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="contact">
+  <div class="cta-beam"></div>
+  <div class="cta-inner">
+    <span class="section-tag rv">Let's Build</span>
+    <h2 class="section-title rv" style="transition-delay:0.1s">Ready to transform with AI?</h2>
+    <p class="rv" style="transition-delay:0.2s">Whether you're exploring your first ML use case or scaling an existing AI infrastructure, we'd love to hear what you're building.</p>
+    <div class="cta-buttons rv" style="transition-delay:0.3s">
+      <a href="mailto:hello@kmats.in" class="btn btn1">Start a Conversation <span class="btn-aw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+      <a href="#" class="btn btn2">Schedule a Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">KMATS</div>
+      <p>AI & technology solutions that transform how businesses operate, decide, and grow. Building tomorrow's intelligence, today.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="#">Machine Learning</a>
+      <a href="#">Natural Language</a>
+      <a href="#">Computer Vision</a>
+      <a href="#">Automation</a>
+      <a href="#">Data Engineering</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Blog</a>
+      <a href="#">Case Studies</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="mailto:hello@kmats.in">hello@kmats.in</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 KMATS. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M13.232 10.232L20 4"/></svg></a>
+      <a href="#" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== LENIS SMOOTH SCROLL =====
+  const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  // ===== LOADER =====
+  const loader = document.getElementById('loader');
+  const loaderFill = document.getElementById('loaderFill');
+  let progress = 0;
+  const loaderInterval = setInterval(() => {
+    progress += Math.random() * 25 + 10;
+    if (progress > 100) progress = 100;
+    loaderFill.style.width = progress + '%';
+    if (progress >= 100) {
+      clearInterval(loaderInterval);
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        initAnimations();
+      }, 400);
+    }
+  }, 200);
+
+  // ===== CUSTOM CURSOR =====
+  const cursor = document.getElementById('cursor');
+  let cx = 0, cy = 0, tx = 0, ty = 0;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  function updateCursor() {
+    cx += (tx - cx) * 0.15;
+    cy += (ty - cy) * 0.15;
+    cursor.style.transform = `translate(${cx - 9}px, ${cy - 9}px)`;
+    requestAnimationFrame(updateCursor);
+  }
+  updateCursor();
+  document.querySelectorAll('a, button, .btn, .scard').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('h-link'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('h-link'));
+  });
+
+  // ===== NAVBAR =====
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+  lenis.on('scroll', ({ scroll }) => {
+    navbar.classList.toggle('scrolled', scroll > 50);
+    navbar.classList.toggle('hide', scroll > lastScroll && scroll > 200);
+    lastScroll = scroll;
+    document.getElementById('pbar').style.width = (scroll / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  });
+
+  // ===== HAMBURGER =====
+  const ham = document.getElementById('ham');
+  const menuOverlay = document.getElementById('menuOverlay');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+    lenis[menuOverlay.classList.contains('open') ? 'stop' : 'start']();
+  });
+  window.closeMenu = function() {
+    ham.classList.remove('open');
+    menuOverlay.classList.remove('open');
+    lenis.start();
+  };
+
+  // ===== CARD SPOTLIGHT GLOW =====
+  document.querySelectorAll('.scard').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    });
+  });
+
+  // ===== TESTIMONIALS =====
+  const testimonials = [
+    { quote: '"KMATS didn\'t just deliver a model — they delivered a system that fundamentally changed how we make decisions. Their team understood our domain better than most internal hires."', name: 'Sarah Chen', role: 'CTO, MedTech Innovations', img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' },
+    { quote: '"What impressed us most was their ability to translate complex ML concepts into business outcomes. The fraud detection system paid for itself in three months."', name: 'Marcus Okafor', role: 'VP Engineering, FinServe Global', img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' },
+    { quote: '"We\'ve worked with three AI consultancies before. KMATS is the only one that delivered production-ready systems, not just Jupyter notebooks."', name: 'Priya Sharma', role: 'Head of Data, LogiChain', img: 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=200' }
+  ];
+  let currentTestimonial = 0;
+  const quoteEl = document.getElementById('testimonialQuote');
+  const authorEl = document.getElementById('testimonialAuthor');
+  const dotsEl = document.getElementById('testimonialDots');
+  function showTestimonial(idx) {
+    currentTestimonial = idx;
+    gsap.to(quoteEl, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+      quoteEl.textContent = testimonials[idx].quote;
+      authorEl.querySelector('.testimonial-name').textContent = testimonials[idx].name;
+      authorEl.querySelector('.testimonial-role').textContent = testimonials[idx].role;
+      authorEl.querySelector('img').src = testimonials[idx].img;
+      gsap.to(quoteEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+    }});
+    dotsEl.querySelectorAll('.testimonial-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+  dotsEl.querySelectorAll('.testimonial-dot').forEach(dot => {
+    dot.addEventListener('click', () => showTestimonial(parseInt(dot.dataset.idx)));
+  });
+  setInterval(() => showTestimonial((currentTestimonial + 1) % testimonials.length), 6000);
+
+  // ===== GSAP ANIMATIONS =====
+  function initAnimations() {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // Hero entrance
+    const heroTl = gsap.timeline({ delay: 0.2 });
+    heroTl
+      .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0)
+      .to('#heroTitle .line span', { y: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1 }, 0.1)
+      .to('#heroDesc', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.5)
+      .to('#heroCtas', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.6)
+      .to('#heroStats', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.7);
+
+    // Counter animation
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      ScrollTrigger.create({
+        trigger: el, start: 'top 80%',
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target, duration: 2, ease: 'power2.out',
+            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val).toLocaleString(); }
+          });
+        }, once: true
+      });
+    });
+
+    // Reveal animations
+    document.querySelectorAll('.rv').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: () => el.classList.add('vis'), once: true
+      });
+    });
+
+    // Text reveal
+    document.querySelectorAll('.trl').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: () => el.classList.add('vis'), once: true
+      });
+    });
+
+    // Horizontal scroll showcase
+    const track = document.getElementById('showcaseTrack');
+    const wrap = document.getElementById('showcaseWrap');
+    if (track && wrap) {
+      const cards = track.querySelectorAll('.showcase-card');
+      const totalWidth = Array.from(cards).reduce((acc, c) => acc + c.offsetWidth + 32, 0);
+      gsap.to(track, {
+        x: () => -(totalWidth - window.innerWidth + 100),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wrap, start: 'top 10%', end: () => `+=${totalWidth}`,
+          scrub: 1, pin: true, anticipatePin: 1,
+        }
+      });
+    }
+
+    // Process timeline line
+    const processLine = document.getElementById('processLine');
+    const processSteps = document.getElementById('processSteps');
+    if (processLine && processSteps) {
+      gsap.to(processLine, {
+        height: '100%', ease: 'none',
+        scrollTrigger: {
+          trigger: processSteps, start: 'top 60%', end: 'bottom 40%', scrub: 1,
+        }
+      });
+    }
+
+    // Parallax on philosophy image
+    gsap.to('.philosophy-img img', {
+      y: -60, ease: 'none',
+      scrollTrigger: { trigger: '.philosophy-section', start: 'top bottom', end: 'bottom top', scrub: 1 }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          lenis.scrollTo(target, { offset: -80, duration: 1.5 });
+          closeMenu();
+        }
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
